@@ -6,33 +6,6 @@
     <title>SARR Institute | Luxurious Application Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
-        
-        // Your Firebase configuration
-        // REPLACE THIS WITH YOUR ACTUAL FIREBASE CONFIGURATION
-        const firebaseConfig = {
-    apiKey: "AIzaSyCUE22yKvFNgmiRZ-4kn_Ev9oAuDZqfr0w",
-    authDomain: "sarr-iot.firebaseapp.com",
-    projectId: "sarr-iot",
-    storageBucket: "sarr-iot.firebasestorage.app",
-    messagingSenderId: "74008875558",
-    appId: "1:74008875558:web:0a4a5896a00acee6bf4ce7",
-    measurementId: "G-THDZBFCR9W"
-  };
-        
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        
-        // Make db available globally
-        window.db = db;
-        window.addDoc = addDoc;
-        window.collection = collection;
-        window.serverTimestamp = serverTimestamp;
-    </script>
     <style>
         * {
             margin: 0;
@@ -48,7 +21,6 @@
             position: relative;
         }
 
-        /* Animated background orbs */
         body::before {
             content: '';
             position: fixed;
@@ -75,7 +47,6 @@
             z-index: 2;
         }
 
-        /* Premium Header */
         .form-header {
             text-align: center;
             margin-bottom: 40px;
@@ -108,7 +79,6 @@
             border-radius: 2px;
         }
 
-        /* Premium Glass Card */
         .form-card {
             background: rgba(15, 25, 45, 0.65);
             backdrop-filter: blur(18px);
@@ -116,13 +86,11 @@
             border: 1px solid rgba(102, 252, 241, 0.25);
             box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(102, 252, 241, 0.1) inset;
             overflow: hidden;
-            transition: all 0.4s ease;
         }
 
         .form-section {
             padding: 36px 44px;
             border-bottom: 1px solid rgba(102, 252, 241, 0.12);
-            transition: all 0.3s;
         }
 
         .form-section:last-child {
@@ -149,7 +117,6 @@
             color: transparent;
         }
 
-        /* Form Grid */
         .form-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -199,7 +166,6 @@
             transform: translateY(-2px);
         }
 
-        /* Radio & Checkbox Groups */
         .radio-group, .checkbox-group {
             display: flex;
             flex-wrap: wrap;
@@ -230,7 +196,6 @@
             accent-color: #66FCF1;
         }
 
-        /* Dynamic Interest Area - Premium Styled */
         .dynamic-interest-area {
             background: linear-gradient(135deg, rgba(102, 252, 241, 0.05), rgba(195, 7, 63, 0.05));
             border-radius: 32px;
@@ -238,12 +203,6 @@
             margin-top: 20px;
             border: 1px solid rgba(102, 252, 241, 0.25);
             transition: all 0.5s ease;
-            animation: glowPulse 2s infinite;
-        }
-
-        @keyframes glowPulse {
-            0%, 100% { box-shadow: 0 0 5px rgba(102, 252, 241, 0.1); }
-            50% { box-shadow: 0 0 20px rgba(102, 252, 241, 0.2); }
         }
 
         .interest-title {
@@ -262,7 +221,6 @@
             gap: 16px;
         }
 
-        /* Course Grid */
         .courses-premium-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -326,7 +284,6 @@
             color: #9BB4D4;
         }
 
-        /* Recommendation Banner */
         .recommendation-banner {
             background: linear-gradient(135deg, rgba(195, 7, 63, 0.15), rgba(102, 252, 241, 0.1));
             border-left: 5px solid #C3073F;
@@ -334,12 +291,6 @@
             padding: 24px 28px;
             margin-bottom: 28px;
             backdrop-filter: blur(8px);
-            animation: slideGlow 0.5s ease;
-        }
-
-        @keyframes slideGlow {
-            from { opacity: 0; transform: translateX(-20px); }
-            to { opacity: 1; transform: translateX(0); }
         }
 
         .recommend-btn {
@@ -359,7 +310,6 @@
             box-shadow: 0 8px 20px rgba(195, 7, 63, 0.4);
         }
 
-        /* Submit Button */
         .btn-submit {
             background: linear-gradient(135deg, #66FCF1, #2C5F8A);
             border: none;
@@ -427,6 +377,20 @@
             display: none;
         }
 
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         @keyframes fadeSlide {
             from { opacity: 0; transform: translateY(-8px); }
             to { opacity: 1; transform: translateY(0); }
@@ -449,21 +413,6 @@
         .courses-premium-grid::-webkit-scrollbar-thumb {
             background: #66FCF1;
             border-radius: 10px;
-        }
-
-        /* Loading Spinner */
-        .spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 0.6s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -531,7 +480,7 @@
                 <div id="courseError" class="error-message">Please select a course to continue</div>
             </div>
 
-            <!-- DYNAMIC AREA OF INTEREST - Changes based on selected course -->
+            <!-- DYNAMIC AREA OF INTEREST -->
             <div class="form-section" id="dynamicInterestSection">
                 <div class="section-title"><i class="fas fa-chart-line"></i><span>Area of Specialization</span></div>
                 <div id="interestDynamicContent" class="dynamic-interest-area">
@@ -545,13 +494,19 @@
                 <div class="section-title"><i class="fas fa-briefcase"></i><span>Professional Context</span></div>
                 <div class="form-group"><label>Previous experience?</label><div class="radio-group"><label class="radio-option"><input type="radio" name="hasExp" value="Yes"> Yes</label><label class="radio-option"><input type="radio" name="hasExp" value="No" checked> No</label></div></div>
                 <div id="expDetail" style="display:none; margin-top:16px;"><textarea rows="3" id="expDesc" placeholder="Describe your experience..." style="width:100%;"></textarea></div>
-                <div style="margin-top:24px;"><label>Purpose of enrollment</label><div class="checkbox-group"><label class="checkbox-option"><input type="checkbox" value="Freelancing"> Freelancing</label><label class="checkbox-option"><input type="checkbox" value="Job"> Job Opportunities</label><label class="checkbox-option"><input type="checkbox" value="Business"> Business Growth</label><label class="checkbox-option"><input type="checkbox" value="Other"> Other: <input type="text" id="otherPurpose" style="width:180px; display:inline-block; margin-left:8px;"></label></div></div>
+                <div style="margin-top:24px;"><label>Purpose of enrollment</label><div class="checkbox-group" id="purposeGroup"><label class="checkbox-option"><input type="checkbox" name="purpose" value="Freelancing"> Freelancing</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Job Opportunities"> Job Opportunities</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Business Growth"> Business Growth</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Other"> Other: <input type="text" id="otherPurpose" style="width:180px; display:inline-block; margin-left:8px;"></label></div></div>
             </div>
 
             <!-- Declaration -->
             <div class="form-section">
                 <div class="section-title"><i class="fas fa-feather-alt"></i><span>Oath of Authenticity</span></div>
-                <div class="declaration-box" style="background:rgba(102,252,241,0.05); border-radius:28px; padding:24px;"><label class="checkbox-option"><input type="checkbox" id="declaration" required> I confirm that all information provided is accurate and complete.</label><div style="margin-top:20px; display:flex; justify-content:space-between;"><span><strong>Digital Signature:</strong> _________________</span><span><strong>Date:</strong> <span id="currentDate"></span></span></div></div>
+                <div style="background:rgba(102,252,241,0.05); border-radius:28px; padding:24px;">
+                    <label class="checkbox-option"><input type="checkbox" id="declaration" required> I confirm that all information provided is accurate and complete.</label>
+                    <div style="margin-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:15px;">
+                        <span><strong>Digital Signature:</strong> _________________</span>
+                        <span><strong>Date:</strong> <span id="currentDateDisplay"></span></span>
+                    </div>
+                </div>
             </div>
 
             <div class="form-section">
@@ -563,15 +518,50 @@
     </div>
 </div>
 
+<!-- Firebase SDK and Main Script -->
 <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
     
-    // Firebase is already initialized in the head, we just need to reference it
-    const db = window.db;
+    // ========== REPLACE THIS WITH YOUR ACTUAL FIREBASE CONFIGURATION ==========
+    // Go to: https://console.firebase.google.com/
+    // Select your project → Project Settings → General → Your apps
+    // Copy the configuration object and paste below
+    
+    const firebaseConfig = {
+        apiKey: "YOUR_API_KEY_HERE",
+        authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+        projectId: "YOUR_PROJECT_ID",
+        storageBucket: "YOUR_PROJECT_ID.firebasestorage.app",
+        messagingSenderId: "YOUR_SENDER_ID",
+        appId: "YOUR_APP_ID"
+    };
+    // ==========================================================================
+    
+    // Initialize Firebase
+    let db;
+    try {
+        const app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        console.log("✅ Firebase connected successfully!");
+    } catch (error) {
+        console.error("❌ Firebase initialization error:", error);
+        document.getElementById('errorMsg').innerHTML = "Firebase connection error. Please check configuration.";
+        document.getElementById('errorMsg').classList.add('show');
+    }
+    
+    // Set current date
+    const today = new Date();
+    const dateStr = today.toLocaleDateString('en-PK', { year: 'numeric', month: '2-digit', day: '2-digit' });
+    const dateElement = document.getElementById('currentDateDisplay');
+    if (dateElement) {
+        dateElement.innerText = dateStr;
+    }
     
     // Premium course catalog
     const courses = [
-        { name: "Digital Freelance Starter Program", duration: "3 months", category: "Foundation", level: "beginner", interests: ["Computer Basics", "Freelance Platforms", "Profile Building", "Client Communication", "Time Management"] },
+        { name: "Digital Freelance Starter Program", duration: "3 months", category: "Foundation", interests: ["Computer Basics", "Freelance Platforms", "Profile Building", "Client Communication", "Time Management"] },
         { name: "Web Development (Full Stack)", duration: "6 months", category: "Development", interests: ["Frontend Frameworks", "Backend APIs", "Database Design", "DevOps", "Cloud Deployment"] },
         { name: "App Development (iOS/Android)", duration: "8 months", category: "Development", interests: ["Swift/Kotlin", "UI/UX for Mobile", "Firebase", "App Store Optimization", "Cross-platform"] },
         { name: "Game Development (Unity/Unreal)", duration: "8 months", category: "Creative Tech", interests: ["C# Scripting", "3D Modeling", "Game Physics", "VR/AR", "Level Design"] },
@@ -586,11 +576,12 @@
         { name: "Leadership Development", duration: "2 months", category: "Soft Skills", interests: ["Emotional Intelligence", "Team Management", "Strategic Planning", "Conflict Resolution"] },
         { name: "Entrepreneurship & Business Growth", duration: "3 months", category: "Business", interests: ["Startup Strategy", "Fundraising", "Business Model", "Scaling Operations"] }
     ];
-
+    
     let isBasicNo = false;
-
+    
     function renderCourses() {
         const container = document.getElementById('coursesContainer');
+        if (!container) return;
         container.innerHTML = '';
         courses.forEach((course, idx) => {
             const card = document.createElement('div');
@@ -599,10 +590,13 @@
             card.innerHTML = `<input type="radio" name="selectedCourse" value="${course.name.replace(/"/g, '&quot;')}" id="course_${idx}"><div class="course-details"><div class="course-title">${course.name}</div><div class="course-meta"><span class="course-cat">${course.category}</span><span class="course-dur">${course.duration}</span></div></div>`;
             container.appendChild(card);
         });
-        if (isBasicNo) { const starter = document.querySelector('input[value="Digital Freelance Starter Program"]'); if(starter) starter.checked = true; }
+        if (isBasicNo) { 
+            const starter = document.querySelector('input[value="Digital Freelance Starter Program"]'); 
+            if(starter) starter.checked = true; 
+        }
         attachCourseListeners();
     }
-
+    
     function attachCourseListeners() {
         document.querySelectorAll('input[name="selectedCourse"]').forEach(radio => {
             radio.addEventListener('change', function() {
@@ -610,26 +604,24 @@
             });
         });
     }
-
+    
     function updateDynamicInterests(courseName) {
         const selected = courses.find(c => c.name === courseName);
         const interestDiv = document.getElementById('interestGrid');
         const titleDiv = document.querySelector('#interestDynamicContent .interest-title');
-        if(selected) {
+        if(selected && interestDiv && titleDiv) {
             titleDiv.innerHTML = `<i class="fas fa-gem"></i> Tailored Specializations for ${selected.name}`;
             interestDiv.innerHTML = selected.interests.map(interest => `
                 <label class="checkbox-option" style="background:rgba(102,252,241,0.05); padding:12px 18px; border-radius:40px;">
                     <input type="checkbox" value="${interest}"> ${interest}
                 </label>
             `).join('');
-            document.getElementById('dynamicInterestSection').style.opacity = '0';
-            setTimeout(() => { document.getElementById('dynamicInterestSection').style.opacity = '1'; }, 100);
-        } else {
+        } else if(titleDiv) {
             titleDiv.innerHTML = `<i class="fas fa-sparkle"></i> Select a course to reveal specialized areas`;
-            interestDiv.innerHTML = '<div style="padding:20px; text-align:center; opacity:0.7;">✨ Your personalized curriculum path will appear here ✨</div>';
+            if(interestDiv) interestDiv.innerHTML = '<div style="padding:20px; text-align:center; opacity:0.7;">Your personalized curriculum path will appear here</div>';
         }
     }
-
+    
     function checkBasicKnowledge() {
         const basicNoRadio = document.getElementById('basicNo');
         const basicYesRadio = document.getElementById('basicYes');
@@ -637,128 +629,153 @@
         const recText = document.getElementById('recommendationText');
         if(basicNoRadio && basicNoRadio.checked) {
             isBasicNo = true;
-            recText.innerHTML = 'We recommend the Digital Freelance Starter Program to build foundational digital skills before advancing to high-end technical courses.';
-            banner.style.display = 'block';
+            if(recText) recText.innerHTML = 'We recommend the Digital Freelance Starter Program to build foundational digital skills before advancing to high-end technical courses.';
+            if(banner) banner.style.display = 'block';
             renderCourses();
         } else if(basicYesRadio && basicYesRadio.checked) {
             isBasicNo = false;
-            banner.style.display = 'none';
+            if(banner) banner.style.display = 'none';
             renderCourses();
             const starterRadio = document.querySelector('input[value="Digital Freelance Starter Program"]');
             if(starterRadio && starterRadio.checked) starterRadio.checked = false;
             updateDynamicInterests('');
         }
     }
-
-    document.getElementById('acceptRecBtn')?.addEventListener('click', () => {
-        const starter = document.querySelector('input[value="Digital Freelance Starter Program"]');
-        if(starter) { starter.checked = true; updateDynamicInterests('Digital Freelance Starter Program'); starter.scrollIntoView({behavior:'smooth', block:'center'}); }
-    });
-
-    document.querySelectorAll('input[name="hasExp"]').forEach(r => r.addEventListener('change', function() { document.getElementById('expDetail').style.display = this.value === 'Yes' ? 'block' : 'none'; }));
-
-    // Firebase Form Submission
-    document.getElementById('premiumForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const submitBtn = document.getElementById('submitBtn');
-        const successDiv = document.getElementById('successMsg');
-        const errorDiv = document.getElementById('errorMsg');
-        
-        // Hide previous messages
-        successDiv.classList.remove('show');
-        errorDiv.classList.remove('show');
-        
-        // Validate course selection
-        const selected = document.querySelector('input[name="selectedCourse"]:checked');
-        if(!selected) { 
-            document.getElementById('courseError').style.display = 'block'; 
-            return; 
-        }
-        document.getElementById('courseError').style.display = 'none';
-        
-        // Validate required fields
-        const name = document.getElementById('fullName').value.trim();
-        const dob = document.getElementById('dob').value;
-        const mobile = document.getElementById('mobile').value.trim();
-        const email = document.getElementById('email').value.trim();
-        
-        if(!name || !dob || !mobile || !email) { 
-            alert('Please complete all required fields.'); 
-            return; 
-        }
-        if(!document.getElementById('declaration').checked) { 
-            alert('Please accept the declaration.'); 
-            return; 
-        }
-        
-        // Get all form data
-        const formData = {
-            fullName: name,
-            guardianName: document.getElementById('guardianName').value,
-            dateOfBirth: dob,
-            gender: document.querySelector('input[name="gender"]:checked')?.value || '',
-            cnic: document.getElementById('cnic').value,
-            nationality: document.getElementById('nationality').value,
-            mobileNumber: mobile,
-            alternatePhone: document.getElementById('altPhone').value,
-            email: email,
-            address: document.getElementById('address').value,
-            city: document.getElementById('city').value,
-            postalCode: document.getElementById('postalCode').value,
-            matric: document.getElementById('matric').value,
-            intermediate: document.getElementById('intermediate').value,
-            bachelor: document.getElementById('bachelor').value,
-            basicComputer: document.querySelector('input[name="basicComp"]:checked')?.value || '',
-            internetLevel: document.getElementById('internetLevel').value,
-            msOffice: document.querySelector('input[name="msOffice"]:checked')?.value || '',
-            selectedCourse: selected.value,
-            interests: Array.from(document.querySelectorAll('#interestGrid input:checked')).map(i => i.value),
-            hasExperience: document.querySelector('input[name="hasExp"]:checked')?.value || '',
-            experienceDescription: document.getElementById('expDesc').value,
-            purpose: Array.from(document.querySelectorAll('input[name="purpose"]:checked, .checkbox-group input[type="checkbox"]:checked')).map(i => i.value),
-            otherPurpose: document.getElementById('otherPurpose').value,
-            submittedAt: serverTimestamp(),
-            status: "pending",
-            applicationId: "APP-" + Date.now() + "-" + Math.random().toString(36).substr(2, 6).toUpperCase()
-        };
-        
-        // Disable button and show loading
-        submitBtn.disabled = true;
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
-        
-        try {
-            // Save to Firebase Firestore
-            const docRef = await addDoc(collection(db, "applications"), formData);
-            console.log("Application saved with ID: ", docRef.id);
+    
+    const acceptBtn = document.getElementById('acceptRecBtn');
+    if(acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+            const starter = document.querySelector('input[value="Digital Freelance Starter Program"]');
+            if(starter) { 
+                starter.checked = true; 
+                updateDynamicInterests('Digital Freelance Starter Program'); 
+                starter.scrollIntoView({behavior:'smooth', block:'center'}); 
+            }
+        });
+    }
+    
+    document.querySelectorAll('input[name="hasExp"]').forEach(r => r.addEventListener('change', function() { 
+        const expDetail = document.getElementById('expDetail');
+        if(expDetail) expDetail.style.display = this.value === 'Yes' ? 'block' : 'none'; 
+    }));
+    
+    // Form Submission to Firebase
+    const form = document.getElementById('premiumForm');
+    if(form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
             
-            // Show success message
-            successDiv.innerHTML = `<i class="fas fa-check-circle"></i> Application submitted successfully! Application ID: ${formData.applicationId}<br>Our concierge team will contact you within 24 hours.`;
-            successDiv.classList.add('show');
+            const submitBtn = document.getElementById('submitBtn');
+            const successDiv = document.getElementById('successMsg');
+            const errorDiv = document.getElementById('errorMsg');
             
-            // Optional: Reset form after successful submission
-            // document.getElementById('premiumForm').reset();
+            if(successDiv) successDiv.classList.remove('show');
+            if(errorDiv) errorDiv.classList.remove('show');
             
-            // Scroll to success message
-            successDiv.scrollIntoView({ behavior: 'smooth' });
+            // Validate course selection
+            const selected = document.querySelector('input[name="selectedCourse"]:checked');
+            const courseError = document.getElementById('courseError');
+            if(!selected) { 
+                if(courseError) courseError.style.display = 'block'; 
+                return; 
+            }
+            if(courseError) courseError.style.display = 'none';
             
-        } catch (error) {
-            console.error("Error saving application: ", error);
-            errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Failed to submit application. Please try again. Error: ${error.message}`;
-            errorDiv.classList.add('show');
-        } finally {
-            // Re-enable button
-            submitBtn.disabled = false;
-            submitBtn.innerHTML = originalText;
-        }
-    });
-
-    document.getElementById('basicNo')?.addEventListener('change', checkBasicKnowledge);
-    document.getElementById('basicYes')?.addEventListener('change', checkBasicKnowledge);
-    document.getElementById('todayDate').innerText = new Date().toLocaleDateString('en-PK');
+            // Validate required fields
+            const name = document.getElementById('fullName')?.value.trim();
+            const dob = document.getElementById('dob')?.value;
+            const mobile = document.getElementById('mobile')?.value.trim();
+            const email = document.getElementById('email')?.value.trim();
+            const declaration = document.getElementById('declaration')?.checked;
+            
+            if(!name || !dob || !mobile || !email) { 
+                alert('Please complete all required fields.'); 
+                return; 
+            }
+            if(!declaration) { 
+                alert('Please accept the declaration.'); 
+                return; 
+            }
+            
+            // Collect all form data
+            const formData = {
+                fullName: name,
+                guardianName: document.getElementById('guardianName')?.value || '',
+                dateOfBirth: dob,
+                gender: document.querySelector('input[name="gender"]:checked')?.value || '',
+                cnic: document.getElementById('cnic')?.value || '',
+                nationality: document.getElementById('nationality')?.value || '',
+                mobileNumber: mobile,
+                alternatePhone: document.getElementById('altPhone')?.value || '',
+                email: email,
+                address: document.getElementById('address')?.value || '',
+                city: document.getElementById('city')?.value || '',
+                postalCode: document.getElementById('postalCode')?.value || '',
+                matric: document.getElementById('matric')?.value || '',
+                intermediate: document.getElementById('intermediate')?.value || '',
+                bachelor: document.getElementById('bachelor')?.value || '',
+                basicComputer: document.querySelector('input[name="basicComp"]:checked')?.value || '',
+                internetLevel: document.getElementById('internetLevel')?.value || '',
+                msOffice: document.querySelector('input[name="msOffice"]:checked')?.value || '',
+                selectedCourse: selected.value,
+                interests: Array.from(document.querySelectorAll('#interestGrid input:checked')).map(i => i.value),
+                hasExperience: document.querySelector('input[name="hasExp"]:checked')?.value || '',
+                experienceDescription: document.getElementById('expDesc')?.value || '',
+                purpose: Array.from(document.querySelectorAll('input[name="purpose"]:checked')).map(i => i.value),
+                otherPurpose: document.getElementById('otherPurpose')?.value || '',
+                submittedAt: serverTimestamp(),
+                status: "pending",
+                applicationId: "SARR-" + Date.now() + "-" + Math.random().toString(36).substr(2, 6).toUpperCase()
+            };
+            
+            // Disable button and show loading
+            if(submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
+            }
+            
+            try {
+                if(!db) throw new Error("Firebase not initialized");
+                
+                const docRef = await addDoc(collection(db, "applications"), formData);
+                console.log("✅ Application saved with ID: ", docRef.id);
+                console.log("📝 Application Data:", formData);
+                
+                if(successDiv) {
+                    successDiv.innerHTML = `<i class="fas fa-check-circle"></i> Application submitted successfully!<br>Application ID: ${formData.applicationId}<br>Our concierge team will contact you within 24 hours.`;
+                    successDiv.classList.add('show');
+                }
+                
+                // Optional: Reset form
+                // form.reset();
+                
+                successDiv?.scrollIntoView({ behavior: 'smooth' });
+                
+            } catch (error) {
+                console.error("❌ Error saving application:", error);
+                if(errorDiv) {
+                    errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Failed to submit application. Please try again. Error: ${error.message}`;
+                    errorDiv.classList.add('show');
+                }
+            } finally {
+                if(submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Royal Application';
+                }
+            }
+        });
+    }
+    
+    // Initialize
+    const basicNo = document.getElementById('basicNo');
+    const basicYes = document.getElementById('basicYes');
+    if(basicNo) basicNo.addEventListener('change', checkBasicKnowledge);
+    if(basicYes) basicYes.addEventListener('change', checkBasicKnowledge);
+    
     renderCourses();
     checkBasicKnowledge();
+    
+    console.log("✅ Application form loaded successfully!");
 </script>
 </body>
 </html>
