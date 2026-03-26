@@ -6,6 +6,33 @@
     <title>SARR Institute | Luxurious Application Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+        
+        // Your Firebase configuration
+        // REPLACE THIS WITH YOUR ACTUAL FIREBASE CONFIGURATION
+        const firebaseConfig = {
+    apiKey: "AIzaSyCUE22yKvFNgmiRZ-4kn_Ev9oAuDZqfr0w",
+    authDomain: "sarr-iot.firebaseapp.com",
+    projectId: "sarr-iot",
+    storageBucket: "sarr-iot.firebasestorage.app",
+    messagingSenderId: "74008875558",
+    appId: "1:74008875558:web:0a4a5896a00acee6bf4ce7",
+    measurementId: "G-THDZBFCR9W"
+  };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        
+        // Make db available globally
+        window.db = db;
+        window.addDoc = addDoc;
+        window.collection = collection;
+        window.serverTimestamp = serverTimestamp;
+    </script>
     <style>
         * {
             margin: 0;
@@ -357,6 +384,12 @@
             filter: brightness(1.05);
         }
 
+        .btn-submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .success-banner {
             background: linear-gradient(135deg, rgba(102, 252, 241, 0.2), rgba(195, 7, 63, 0.15));
             border-radius: 28px;
@@ -368,10 +401,35 @@
             border: 1px solid rgba(102, 252, 241, 0.4);
         }
 
+        .success-banner.show {
+            display: block;
+            animation: fadeSlide 0.3s ease;
+        }
+
+        .error-banner {
+            background: linear-gradient(135deg, rgba(195, 7, 63, 0.2), rgba(195, 7, 63, 0.1));
+            border-radius: 28px;
+            padding: 18px;
+            text-align: center;
+            color: #C3073F;
+            margin-top: 24px;
+            display: none;
+            border: 1px solid rgba(195, 7, 63, 0.4);
+        }
+
+        .error-banner.show {
+            display: block;
+        }
+
         .error-message {
             color: #C3073F;
             margin-top: 12px;
             display: none;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 780px) {
@@ -391,6 +449,21 @@
         .courses-premium-grid::-webkit-scrollbar-thumb {
             background: #66FCF1;
             border-radius: 10px;
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
@@ -482,14 +555,20 @@
             </div>
 
             <div class="form-section">
-                <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Submit Royal Application</button>
+                <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Submit Royal Application</button>
                 <div id="successMsg" class="success-banner"></div>
+                <div id="errorMsg" class="error-banner"></div>
             </div>
         </form>
     </div>
 </div>
 
-<script>
+<script type="module">
+    import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
+    
+    // Firebase is already initialized in the head, we just need to reference it
+    const db = window.db;
+    
     // Premium course catalog
     const courses = [
         { name: "Digital Freelance Starter Program", duration: "3 months", category: "Foundation", level: "beginner", interests: ["Computer Basics", "Freelance Platforms", "Profile Building", "Client Communication", "Time Management"] },
@@ -578,20 +657,101 @@
 
     document.querySelectorAll('input[name="hasExp"]').forEach(r => r.addEventListener('change', function() { document.getElementById('expDetail').style.display = this.value === 'Yes' ? 'block' : 'none'; }));
 
-    document.getElementById('premiumForm').addEventListener('submit', function(e) {
+    // Firebase Form Submission
+    document.getElementById('premiumForm').addEventListener('submit', async function(e) {
         e.preventDefault();
-        const selected = document.querySelector('input[name="selectedCourse"]:checked');
-        if(!selected) { document.getElementById('courseError').style.display = 'block'; return; }
-        document.getElementById('courseError').style.display = 'none';
-        const name = document.getElementById('fullName').value.trim();
-        if(!name || !document.getElementById('dob').value || !document.getElementById('mobile').value.trim() || !document.getElementById('email').value.trim()) { alert('Please complete all required fields.'); return; }
-        if(!document.getElementById('declaration').checked) { alert('Please accept the declaration.'); return; }
+        
+        const submitBtn = document.getElementById('submitBtn');
         const successDiv = document.getElementById('successMsg');
-        successDiv.innerHTML = `<i class="fas fa-check-circle"></i> Application submitted! Our concierge team will contact you within 24 hours.`;
-        successDiv.style.display = 'block';
-        setTimeout(() => successDiv.style.display = 'none', 6000);
-        console.log('Application:', { name, course: selected.value, interests: Array.from(document.querySelectorAll('#interestGrid input:checked')).map(i=>i.value) });
-        successDiv.scrollIntoView({ behavior: 'smooth' });
+        const errorDiv = document.getElementById('errorMsg');
+        
+        // Hide previous messages
+        successDiv.classList.remove('show');
+        errorDiv.classList.remove('show');
+        
+        // Validate course selection
+        const selected = document.querySelector('input[name="selectedCourse"]:checked');
+        if(!selected) { 
+            document.getElementById('courseError').style.display = 'block'; 
+            return; 
+        }
+        document.getElementById('courseError').style.display = 'none';
+        
+        // Validate required fields
+        const name = document.getElementById('fullName').value.trim();
+        const dob = document.getElementById('dob').value;
+        const mobile = document.getElementById('mobile').value.trim();
+        const email = document.getElementById('email').value.trim();
+        
+        if(!name || !dob || !mobile || !email) { 
+            alert('Please complete all required fields.'); 
+            return; 
+        }
+        if(!document.getElementById('declaration').checked) { 
+            alert('Please accept the declaration.'); 
+            return; 
+        }
+        
+        // Get all form data
+        const formData = {
+            fullName: name,
+            guardianName: document.getElementById('guardianName').value,
+            dateOfBirth: dob,
+            gender: document.querySelector('input[name="gender"]:checked')?.value || '',
+            cnic: document.getElementById('cnic').value,
+            nationality: document.getElementById('nationality').value,
+            mobileNumber: mobile,
+            alternatePhone: document.getElementById('altPhone').value,
+            email: email,
+            address: document.getElementById('address').value,
+            city: document.getElementById('city').value,
+            postalCode: document.getElementById('postalCode').value,
+            matric: document.getElementById('matric').value,
+            intermediate: document.getElementById('intermediate').value,
+            bachelor: document.getElementById('bachelor').value,
+            basicComputer: document.querySelector('input[name="basicComp"]:checked')?.value || '',
+            internetLevel: document.getElementById('internetLevel').value,
+            msOffice: document.querySelector('input[name="msOffice"]:checked')?.value || '',
+            selectedCourse: selected.value,
+            interests: Array.from(document.querySelectorAll('#interestGrid input:checked')).map(i => i.value),
+            hasExperience: document.querySelector('input[name="hasExp"]:checked')?.value || '',
+            experienceDescription: document.getElementById('expDesc').value,
+            purpose: Array.from(document.querySelectorAll('input[name="purpose"]:checked, .checkbox-group input[type="checkbox"]:checked')).map(i => i.value),
+            otherPurpose: document.getElementById('otherPurpose').value,
+            submittedAt: serverTimestamp(),
+            status: "pending",
+            applicationId: "APP-" + Date.now() + "-" + Math.random().toString(36).substr(2, 6).toUpperCase()
+        };
+        
+        // Disable button and show loading
+        submitBtn.disabled = true;
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
+        
+        try {
+            // Save to Firebase Firestore
+            const docRef = await addDoc(collection(db, "applications"), formData);
+            console.log("Application saved with ID: ", docRef.id);
+            
+            // Show success message
+            successDiv.innerHTML = `<i class="fas fa-check-circle"></i> Application submitted successfully! Application ID: ${formData.applicationId}<br>Our concierge team will contact you within 24 hours.`;
+            successDiv.classList.add('show');
+            
+            // Optional: Reset form after successful submission
+            // document.getElementById('premiumForm').reset();
+            
+            // Scroll to success message
+            successDiv.scrollIntoView({ behavior: 'smooth' });
+            
+        } catch (error) {
+            console.error("Error saving application: ", error);
+            errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Failed to submit application. Please try again. Error: ${error.message}`;
+            errorDiv.classList.add('show');
+        } finally {
+            // Re-enable button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+        }
     });
 
     document.getElementById('basicNo')?.addEventListener('change', checkBasicKnowledge);
