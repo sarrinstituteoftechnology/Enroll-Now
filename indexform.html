@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>SARR Institute | Luxurious Application Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #0A1428 0%, #0F1A2F 100%);
+            min-height: 100vh;
+            padding: 48px 24px;
+            position: relative;
+        }
+
+        /* Animated background orbs */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 40%, rgba(44, 95, 138, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(102, 126, 234, 0.12) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+            animation: slowDrift 30s ease-in-out infinite;
+        }
+
+        @keyframes slowDrift {
+            0%, 100% { transform: translate(0%, 0%); }
+            50% { transform: translate(3%, 2%); }
+        }
+
+        .form-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Premium Header */
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        .form-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #E8F0FF, #66FCF1, #C3073F);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+            text-shadow: 0 0 30px rgba(102, 252, 241, 0.3);
+        }
+
+        .form-header p {
+            color: rgba(200, 215, 245, 0.8);
+            font-size: 1rem;
+            margin-top: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .luxury-line {
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #66FCF1, #C3073F, transparent);
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Premium Glass Card */
+        .form-card {
+            background: rgba(15, 25, 45, 0.65);
+            backdrop-filter: blur(18px);
+            border-radius: 48px;
+            border: 1px solid rgba(102, 252, 241, 0.25);
+            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(102, 252, 241, 0.1) inset;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .form-section {
+            padding: 36px 44px;
+            border-bottom: 1px solid rgba(102, 252, 241, 0.12);
+            transition: all 0.3s;
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #66FCF1;
+            margin-bottom: 32px;
+            letter-spacing: -0.2px;
+            text-shadow: 0 0 8px rgba(102, 252, 241, 0.3);
+        }
+
+        .section-title i {
+            font-size: 1.6rem;
+            background: linear-gradient(135deg, #66FCF1, #C3073F);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #9BB4D4;
+            margin-bottom: 10px;
+        }
+
+        .required {
+            color: #C3073F;
+            margin-left: 4px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 14px 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            background: rgba(10, 20, 35, 0.6);
+            border: 1.5px solid rgba(102, 252, 241, 0.25);
+            border-radius: 24px;
+            color: #F0F4FF;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #66FCF1;
+            box-shadow: 0 0 20px rgba(102, 252, 241, 0.2), 0 0 0 2px rgba(102, 252, 241, 0.1);
+            background: rgba(10, 20, 35, 0.8);
+            transform: translateY(-2px);
+        }
+
+        /* Radio & Checkbox Groups */
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            margin-top: 8px;
+        }
+
+        .radio-option, .checkbox-option {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #CCDEFF;
+            transition: all 0.2s;
+        }
+
+        .radio-option:hover, .checkbox-option:hover {
+            color: #66FCF1;
+            transform: translateX(3px);
+        }
+
+        .radio-option input, .checkbox-option input {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+            accent-color: #66FCF1;
+        }
+
+        /* Dynamic Interest Area - Premium Styled */
+        .dynamic-interest-area {
+            background: linear-gradient(135deg, rgba(102, 252, 241, 0.05), rgba(195, 7, 63, 0.05));
+            border-radius: 32px;
+            padding: 28px;
+            margin-top: 20px;
+            border: 1px solid rgba(102, 252, 241, 0.25);
+            transition: all 0.5s ease;
+            animation: glowPulse 2s infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { box-shadow: 0 0 5px rgba(102, 252, 241, 0.1); }
+            50% { box-shadow: 0 0 20px rgba(102, 252, 241, 0.2); }
+        }
+
+        .interest-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #66FCF1;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        /* Course Grid */
+        .courses-premium-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 16px;
+            max-height: 480px;
+            overflow-y: auto;
+            padding: 8px 4px;
+        }
+
+        .course-option {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px 20px;
+            background: rgba(10, 20, 35, 0.5);
+            border: 1.5px solid rgba(102, 252, 241, 0.2);
+            border-radius: 28px;
+            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            cursor: pointer;
+        }
+
+        .course-option:hover {
+            border-color: #66FCF1;
+            background: rgba(102, 252, 241, 0.08);
+            transform: translateX(6px) scale(1.01);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .course-option input[type="radio"] {
+            width: 22px;
+            height: 22px;
+            accent-color: #66FCF1;
+        }
+
+        .course-details {
+            flex: 1;
+        }
+
+        .course-title {
+            font-weight: 700;
+            color: #E8F0FF;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .course-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            font-size: 0.7rem;
+        }
+
+        .course-cat {
+            background: rgba(102, 252, 241, 0.15);
+            padding: 3px 12px;
+            border-radius: 30px;
+            color: #66FCF1;
+        }
+
+        .course-dur {
+            color: #9BB4D4;
+        }
+
+        /* Recommendation Banner */
+        .recommendation-banner {
+            background: linear-gradient(135deg, rgba(195, 7, 63, 0.15), rgba(102, 252, 241, 0.1));
+            border-left: 5px solid #C3073F;
+            border-radius: 28px;
+            padding: 24px 28px;
+            margin-bottom: 28px;
+            backdrop-filter: blur(8px);
+            animation: slideGlow 0.5s ease;
+        }
+
+        @keyframes slideGlow {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .recommend-btn {
+            background: linear-gradient(135deg, #C3073F, #9b2c4b);
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 12px;
+        }
+
+        .recommend-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(195, 7, 63, 0.4);
+        }
+
+        /* Submit Button */
+        .btn-submit {
+            background: linear-gradient(135deg, #66FCF1, #2C5F8A);
+            border: none;
+            padding: 18px 32px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 60px;
+            width: 100%;
+            cursor: pointer;
+            color: #0A1428;
+            transition: all 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            letter-spacing: 1px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 35px rgba(102, 252, 241, 0.3);
+            filter: brightness(1.05);
+        }
+
+        .success-banner {
+            background: linear-gradient(135deg, rgba(102, 252, 241, 0.2), rgba(195, 7, 63, 0.15));
+            border-radius: 28px;
+            padding: 18px;
+            text-align: center;
+            color: #66FCF1;
+            margin-top: 24px;
+            display: none;
+            border: 1px solid rgba(102, 252, 241, 0.4);
+        }
+
+        .error-message {
+            color: #C3073F;
+            margin-top: 12px;
+            display: none;
+        }
+
+        @media (max-width: 780px) {
+            body { padding: 24px 16px; }
+            .form-section { padding: 24px 20px; }
+            .form-grid { grid-template-columns: 1fr; gap: 20px; }
+            .form-group.full-width { grid-column: span 1; }
+        }
+
+        .courses-premium-grid::-webkit-scrollbar {
+            width: 6px;
+        }
+        .courses-premium-grid::-webkit-scrollbar-track {
+            background: rgba(102, 252, 241, 0.1);
+            border-radius: 10px;
+        }
+        .courses-premium-grid::-webkit-scrollbar-thumb {
+            background: #66FCF1;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <div class="form-header">
+        <h1>SARR Institute of Technology</h1>
+        <p>Where ambition meets excellence — secure your future with our elite programs</p>
+        <div class="luxury-line"></div>
+    </div>
+
+    <div class="form-card">
+        <form id="premiumForm">
+            <!-- Personal Info -->
+            <div class="form-section">
+                <div class="section-title"><i class="fas fa-crown"></i><span>Distinguished Profile</span></div>
+                <div class="form-grid">
+                    <div class="form-group"><label>Full name <span class="required">*</span></label><input type="text" id="fullName" placeholder="Enter your full name" required></div>
+                    <div class="form-group"><label>Guardian's name</label><input type="text" id="guardianName" placeholder="Father / Guardian"></div>
+                    <div class="form-group"><label>Date of birth <span class="required">*</span></label><input type="date" id="dob" required></div>
+                    <div class="form-group"><label>Gender</label><div class="radio-group"><label class="radio-option"><input type="radio" name="gender" value="Male"> Male</label><label class="radio-option"><input type="radio" name="gender" value="Female"> Female</label><label class="radio-option"><input type="radio" name="gender" value="Other"> Other</label></div></div>
+                    <div class="form-group"><label>CNIC / National ID</label><input type="text" id="cnic" placeholder="e.g., 35201-1234567-8"></div>
+                    <div class="form-group"><label>Nationality</label><input type="text" id="nationality" value="Pakistani"></div>
+                </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="form-section">
+                <div class="section-title"><i class="fas fa-envelope-open-text"></i><span>Contact Resonance</span></div>
+                <div class="form-grid">
+                    <div class="form-group"><label>Mobile number <span class="required">*</span></label><input type="tel" id="mobile" placeholder="+92 300 1234567" required></div>
+                    <div class="form-group"><label>Alternate phone</label><input type="tel" id="altPhone" placeholder="Optional"></div>
+                    <div class="form-group full-width"><label>Email address <span class="required">*</span></label><input type="email" id="email" placeholder="prestigious@domain.com" required></div>
+                    <div class="form-group full-width"><label>Address</label><input type="text" id="address" placeholder="Full address"></div>
+                    <div class="form-group"><label>City</label><input type="text" id="city" placeholder="City"></div>
+                    <div class="form-group"><label>Postal code</label><input type="text" id="postalCode" placeholder="Postal code"></div>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="form-section">
+                <div class="section-title"><i class="fas fa-graduation-cap"></i><span>Academic Pedigree</span></div>
+                <div class="form-grid">
+                    <div class="form-group"><label>Matric / High school</label><input type="text" id="matric" placeholder="Institution & Grade"></div>
+                    <div class="form-group"><label>Intermediate</label><input type="text" id="intermediate" placeholder="College & Percentage"></div>
+                    <div class="form-group full-width"><label>Bachelor's degree</label><input type="text" id="bachelor" placeholder="Degree, University, Year"></div>
+                </div>
+            </div>
+
+            <!-- Computer Skills + Recommendation Trigger -->
+            <div class="form-section">
+                <div class="section-title"><i class="fas fa-microchip"></i><span>Digital Aptitude</span></div>
+                <div class="form-grid">
+                    <div class="form-group"><label>Basic computer knowledge <span class="required">*</span></label><div class="radio-group" id="basicCompGroup"><label class="radio-option"><input type="radio" name="basicComp" value="Yes" id="basicYes"> Yes</label><label class="radio-option"><input type="radio" name="basicComp" value="No" id="basicNo"> No</label></div></div>
+                    <div class="form-group"><label>Internet browsing level</label><select id="internetLevel"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option></select></div>
+                    <div class="form-group"><label>Microsoft Office</label><div class="radio-group"><label class="radio-option"><input type="radio" name="msOffice" value="Yes"> Yes</label><label class="radio-option"><input type="radio" name="msOffice" value="No"> No</label></div></div>
+                </div>
+                <div id="recommendationBanner" class="recommendation-banner" style="display: none;"><i class="fas fa-gem" style="color:#C3073F; margin-right:12px;"></i> <strong>Elite Recommendation:</strong> <span id="recommendationText"></span><br><button type="button" id="acceptRecBtn" class="recommend-btn">Select Foundation Program</button></div>
+            </div>
+
+            <!-- Course Selection -->
+            <div class="form-section">
+                <div class="section-title"><i class="fas fa-chalkboard-user"></i><span>Select Your Legacy Program</span></div>
+                <div id="coursesContainer" class="courses-premium-grid"></div>
+                <div id="courseError" class="error-message">Please select a course to continue</div>
+            </div>
+
+            <!-- DYNAMIC AREA OF INTEREST - Changes based on selected course -->
+            <div class="form-section" id="dynamicInterestSection">
+                <div class="section-title"><i class="fas fa-chart-line"></i><span>Area of Specialization</span></div>
+                <div id="interestDynamicContent" class="dynamic-interest-area">
+                    <div class="interest-title"><i class="fas fa-sparkle"></i> Select a course above to see tailored specialization areas</div>
+                    <div class="skills-grid" id="interestGrid"></div>
+                </div>
+            </div>
+
+            <!-- Experience & Purpose -->
+            <div class="form-section">
+                <div class="section-title"><i class="fas fa-briefcase"></i><span>Professional Context</span></div>
+                <div class="form-group"><label>Previous experience?</label><div class="radio-group"><label class="radio-option"><input type="radio" name="hasExp" value="Yes"> Yes</label><label class="radio-option"><input type="radio" name="hasExp" value="No" checked> No</label></div></div>
+                <div id="expDetail" style="display:none; margin-top:16px;"><textarea rows="3" id="expDesc" placeholder="Describe your experience..." style="width:100%;"></textarea></div>
+                <div style="margin-top:24px;"><label>Purpose of enrollment</label><div class="checkbox-group"><label class="checkbox-option"><input type="checkbox" value="Freelancing"> Freelancing</label><label class="checkbox-option"><input type="checkbox" value="Job"> Job Opportunities</label><label class="checkbox-option"><input type="checkbox" value="Business"> Business Growth</label><label class="checkbox-option"><input type="checkbox" value="Other"> Other: <input type="text" id="otherPurpose" style="width:180px; display:inline-block; margin-left:8px;"></label></div></div>
+            </div>
+
+            <!-- Declaration -->
+            <div class="form-section">
+                <div class="section-title"><i class="fas fa-feather-alt"></i><span>Oath of Authenticity</span></div>
+                <div class="declaration-box" style="background:rgba(102,252,241,0.05); border-radius:28px; padding:24px;"><label class="checkbox-option"><input type="checkbox" id="declaration" required> I confirm that all information provided is accurate and complete.</label><div style="margin-top:20px; display:flex; justify-content:space-between;"><span><strong>Digital Signature:</strong> _________________</span><span><strong>Date:</strong> <span id="currentDate"></span></span></div></div>
+            </div>
+
+            <div class="form-section">
+                <button type="submit" class="btn-submit"><i class="fas fa-paper-plane"></i> Submit Royal Application</button>
+                <div id="successMsg" class="success-banner"></div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Premium course catalog
+    const courses = [
+        { name: "Digital Freelance Starter Program", duration: "2 months", category: "Foundation", level: "beginner", interests: ["Computer Basics", "Freelance Platforms", "Profile Building", "Client Communication", "Time Management"] },
+        { name: "Web Development (Full Stack)", duration: "6 months", category: "Development", interests: ["Frontend Frameworks", "Backend APIs", "Database Design", "DevOps", "Cloud Deployment"] },
+        { name: "App Development (iOS/Android)", duration: "5 months", category: "Development", interests: ["Swift/Kotlin", "UI/UX for Mobile", "Firebase", "App Store Optimization", "Cross-platform"] },
+        { name: "Game Development (Unity/Unreal)", duration: "7 months", category: "Creative Tech", interests: ["C# Scripting", "3D Modeling", "Game Physics", "VR/AR", "Level Design"] },
+        { name: "AI & Machine Learning Automation", duration: "5 months", category: "AI", interests: ["Python", "Neural Networks", "NLP", "Computer Vision", "AutoML"] },
+        { name: "Cybersecurity", duration: "6 months", category: "Security", interests: ["Network Security", "Ethical Hacking", "Cryptography", "Risk Assessment", "Incident Response"] },
+        { name: "Digital Marketing Mastery", duration: "4 months", category: "Marketing", interests: ["SEO Strategy", "Social Media Ads", "Content Funnels", "Email Automation", "Analytics"] },
+        { name: "Graphics Design", duration: "3 months", category: "Design", interests: ["Brand Identity", "Adobe Suite", "Typography", "Motion Graphics", "UI Design"] },
+        { name: "2D & 3D Animation", duration: "5 months", category: "Animation", interests: ["Character Rigging", "Blender", "Maya", "Storyboarding", "Visual Effects"] },
+        { name: "Ethical Hacking", duration: "5 months", category: "Security", interests: ["Penetration Testing", "Bug Bounty", "Network Scanning", "Social Engineering", "Reporting"] },
+        { name: "Freelancing Mastery", duration: "3 months", category: "Business", interests: ["Proposal Writing", "Client Retention", "Portfolio", "Pricing Strategy", "Global Marketplaces"] },
+        { name: "AI Automation & Bots", duration: "4 months", category: "AI", interests: ["RPA", "Chatbots", "API Integration", "Workflow Automation", "LLM Fine-tuning"] },
+        { name: "Leadership Development", duration: "2 months", category: "Soft Skills", interests: ["Emotional Intelligence", "Team Management", "Strategic Planning", "Conflict Resolution"] },
+        { name: "Entrepreneurship & Business Growth", duration: "3 months", category: "Business", interests: ["Startup Strategy", "Fundraising", "Business Model", "Scaling Operations"] }
+    ];
+
+    let isBasicNo = false;
+
+    function renderCourses() {
+        const container = document.getElementById('coursesContainer');
+        container.innerHTML = '';
+        courses.forEach((course, idx) => {
+            const card = document.createElement('div');
+            card.className = 'course-option';
+            if (isBasicNo && course.name === "Digital Freelance Starter Program") card.style.border = "2px solid #C3073F";
+            card.innerHTML = `<input type="radio" name="selectedCourse" value="${course.name.replace(/"/g, '&quot;')}" id="course_${idx}"><div class="course-details"><div class="course-title">${course.name}</div><div class="course-meta"><span class="course-cat">${course.category}</span><span class="course-dur">${course.duration}</span></div></div>`;
+            container.appendChild(card);
+        });
+        if (isBasicNo) { const starter = document.querySelector('input[value="Digital Freelance Starter Program"]'); if(starter) starter.checked = true; }
+        attachCourseListeners();
+    }
+
+    function attachCourseListeners() {
+        document.querySelectorAll('input[name="selectedCourse"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                if(this.checked) updateDynamicInterests(this.value);
+            });
+        });
+    }
+
+    function updateDynamicInterests(courseName) {
+        const selected = courses.find(c => c.name === courseName);
+        const interestDiv = document.getElementById('interestGrid');
+        const titleDiv = document.querySelector('#interestDynamicContent .interest-title');
+        if(selected) {
+            titleDiv.innerHTML = `<i class="fas fa-gem"></i> Tailored Specializations for ${selected.name}`;
+            interestDiv.innerHTML = selected.interests.map(interest => `
+                <label class="checkbox-option" style="background:rgba(102,252,241,0.05); padding:12px 18px; border-radius:40px;">
+                    <input type="checkbox" value="${interest}"> ${interest}
+                </label>
+            `).join('');
+            document.getElementById('dynamicInterestSection').style.opacity = '0';
+            setTimeout(() => { document.getElementById('dynamicInterestSection').style.opacity = '1'; }, 100);
+        } else {
+            titleDiv.innerHTML = `<i class="fas fa-sparkle"></i> Select a course to reveal specialized areas`;
+            interestDiv.innerHTML = '<div style="padding:20px; text-align:center; opacity:0.7;">✨ Your personalized curriculum path will appear here ✨</div>';
+        }
+    }
+
+    function checkBasicKnowledge() {
+        const basicNoRadio = document.getElementById('basicNo');
+        const basicYesRadio = document.getElementById('basicYes');
+        const banner = document.getElementById('recommendationBanner');
+        const recText = document.getElementById('recommendationText');
+        if(basicNoRadio && basicNoRadio.checked) {
+            isBasicNo = true;
+            recText.innerHTML = 'We recommend the Digital Freelance Starter Program to build foundational digital skills before advancing to high-end technical courses.';
+            banner.style.display = 'block';
+            renderCourses();
+        } else if(basicYesRadio && basicYesRadio.checked) {
+            isBasicNo = false;
+            banner.style.display = 'none';
+            renderCourses();
+            const starterRadio = document.querySelector('input[value="Digital Freelance Starter Program"]');
+            if(starterRadio && starterRadio.checked) starterRadio.checked = false;
+            updateDynamicInterests('');
+        }
+    }
+
+    document.getElementById('acceptRecBtn')?.addEventListener('click', () => {
+        const starter = document.querySelector('input[value="Digital Freelance Starter Program"]');
+        if(starter) { starter.checked = true; updateDynamicInterests('Digital Freelance Starter Program'); starter.scrollIntoView({behavior:'smooth', block:'center'}); }
+    });
+
+    document.querySelectorAll('input[name="hasExp"]').forEach(r => r.addEventListener('change', function() { document.getElementById('expDetail').style.display = this.value === 'Yes' ? 'block' : 'none'; }));
+
+    document.getElementById('premiumForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const selected = document.querySelector('input[name="selectedCourse"]:checked');
+        if(!selected) { document.getElementById('courseError').style.display = 'block'; return; }
+        document.getElementById('courseError').style.display = 'none';
+        const name = document.getElementById('fullName').value.trim();
+        if(!name || !document.getElementById('dob').value || !document.getElementById('mobile').value.trim() || !document.getElementById('email').value.trim()) { alert('Please complete all required fields.'); return; }
+        if(!document.getElementById('declaration').checked) { alert('Please accept the declaration.'); return; }
+        const successDiv = document.getElementById('successMsg');
+        successDiv.innerHTML = `<i class="fas fa-check-circle"></i> Application submitted! Our concierge team will contact you within 24 hours.`;
+        successDiv.style.display = 'block';
+        setTimeout(() => successDiv.style.display = 'none', 6000);
+        console.log('Application:', { name, course: selected.value, interests: Array.from(document.querySelectorAll('#interestGrid input:checked')).map(i=>i.value) });
+        successDiv.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    document.getElementById('basicNo')?.addEventListener('change', checkBasicKnowledge);
+    document.getElementById('basicYes')?.addEventListener('change', checkBasicKnowledge);
+    document.getElementById('todayDate').innerText = new Date().toLocaleDateString('en-PK');
+    renderCourses();
+    checkBasicKnowledge();
+</script>
+</body>
+</html>
