@@ -396,11 +396,36 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Redirect Message */
+        .redirect-message {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(102, 252, 241, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 12px 24px;
+            border-radius: 50px;
+            color: #66FCF1;
+            font-size: 0.85rem;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(102, 252, 241, 0.3);
+            animation: slideInRight 0.3s ease;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(100px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
         @media (max-width: 780px) {
             body { padding: 24px 16px; }
             .form-section { padding: 24px 20px; }
             .form-grid { grid-template-columns: 1fr; gap: 20px; }
             .form-group.full-width { grid-column: span 1; }
+            .redirect-message { bottom: 20px; right: 20px; padding: 8px 16px; font-size: 0.75rem; }
         }
 
         .courses-premium-grid::-webkit-scrollbar {
@@ -518,27 +543,36 @@
     </div>
 </div>
 
+<!-- Redirect Message -->
+<div id="redirectMessage" class="redirect-message">
+    <i class="fas fa-spinner fa-pulse"></i> Redirecting to greeting page...
+</div>
+
 <!-- Firebase SDK and Main Script -->
 <script type="module">
     // Import Firebase modules
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
     
-    // ========== REPLACE THIS WITH YOUR ACTUAL FIREBASE CONFIGURATION ==========
-    // Go to: https://console.firebase.google.com/
-    // Select your project → Project Settings → General → Your apps
-    // Copy the configuration object and paste below
-    
+    // ========== YOUR FIREBASE CONFIGURATION ==========
     const firebaseConfig = {
-  apiKey: "AIzaSyCUE22yKvFNgmiRZ-4kn_Ev9oAuDZqfr0w",
-  authDomain: "sarr-iot.firebaseapp.com",
-  projectId: "sarr-iot",
-  storageBucket: "sarr-iot.firebasestorage.app",
-  messagingSenderId: "74008875558",
-  appId: "1:74008875558:web:0a4a5896a00acee6bf4ce7",
-  measurementId: "G-THDZBFCR9W"
-};
-    // ==========================================================================
+        apiKey: "AIzaSyCUE22yKvFNgmiRZ-4kn_Ev9oAuDZqfr0w",
+        authDomain: "sarr-iot.firebaseapp.com",
+        projectId: "sarr-iot",
+        storageBucket: "sarr-iot.firebasestorage.app",
+        messagingSenderId: "74008875558",
+        appId: "1:74008875558:web:0a4a5896a00acee6bf4ce7",
+        measurementId: "G-THDZBFCR9W"
+    };
+    
+    // ========== CUSTOM REDIRECT URL ==========
+    // 👇 CHANGE THIS URL TO YOUR DESIRED REDIRECTION PAGE
+    const REDIRECT_URL = "https://sarrinstituteoftechnology.github.io/Application/"; // Replace with your custom link
+    // Examples:
+    // const REDIRECT_URL = "greeting.html";
+    // const REDIRECT_URL = "https://yourdomain.com/application-received";
+    // const REDIRECT_URL = "thank-you-page.html";
+    // ============================================
     
     // Initialize Firebase
     let db;
@@ -660,7 +694,15 @@
         if(expDetail) expDetail.style.display = this.value === 'Yes' ? 'block' : 'none'; 
     }));
     
-    // Form Submission to Firebase
+    // Show redirect message
+    function showRedirectMessage() {
+        const msgDiv = document.getElementById('redirectMessage');
+        if (msgDiv) {
+            msgDiv.style.display = 'flex';
+        }
+    }
+    
+    // Form Submission to Firebase with Redirect
     const form = document.getElementById('premiumForm');
     if(form) {
         form.addEventListener('submit', async function(e) {
@@ -699,6 +741,8 @@
             }
             
             // Collect all form data
+            const applicationId = "SARR-" + Date.now() + "-" + Math.random().toString(36).substr(2, 6).toUpperCase();
+            
             const formData = {
                 fullName: name,
                 guardianName: document.getElementById('guardianName')?.value || '',
@@ -726,8 +770,17 @@
                 otherPurpose: document.getElementById('otherPurpose')?.value || '',
                 submittedAt: serverTimestamp(),
                 status: "pending",
-                applicationId: "SARR-" + Date.now() + "-" + Math.random().toString(36).substr(2, 6).toUpperCase()
+                applicationId: applicationId
             };
+            
+            // Store application data in localStorage for the greeting page
+            localStorage.setItem('sarr_last_applicant', JSON.stringify({
+                name: name,
+                appId: applicationId,
+                email: email,
+                course: selected.value,
+                submittedAt: new Date().toISOString()
+            }));
             
             // Disable button and show loading
             if(submitBtn) {
@@ -741,16 +794,30 @@
                 const docRef = await addDoc(collection(db, "applications"), formData);
                 console.log("✅ Application saved with ID: ", docRef.id);
                 console.log("📝 Application Data:", formData);
+                console.log("🔄 Redirecting to:", REDIRECT_URL);
                 
+                // Show redirect message
+                showRedirectMessage();
+                
+                // Show success message briefly before redirect
                 if(successDiv) {
-                    successDiv.innerHTML = `<i class="fas fa-check-circle"></i> Application submitted successfully!<br>Application ID: ${formData.applicationId}<br>Our concierge team will contact you within 24 hours.`;
+                    successDiv.innerHTML = `<i class="fas fa-check-circle"></i> Application submitted successfully!<br>Application ID: ${applicationId}<br>Redirecting you to the next page...`;
                     successDiv.classList.add('show');
                 }
                 
-                // Optional: Reset form
-                // form.reset();
-                
-                successDiv?.scrollIntoView({ behavior: 'smooth' });
+                // Wait 2 seconds to show success message, then redirect
+                setTimeout(() => {
+                    // Build redirect URL with query parameters
+                    let redirectUrl = REDIRECT_URL;
+                    
+                    // Add query parameters if the URL is a local file or has query string support
+                    if (redirectUrl.includes('?') || redirectUrl.includes('.html') || redirectUrl.includes('.php')) {
+                        const separator = redirectUrl.includes('?') ? '&' : '?';
+                        redirectUrl = `${redirectUrl}${separator}name=${encodeURIComponent(name)}&appId=${applicationId}&email=${encodeURIComponent(email)}&course=${encodeURIComponent(selected.value)}`;
+                    }
+                    
+                    window.location.href = redirectUrl;
+                }, 2000);
                 
             } catch (error) {
                 console.error("❌ Error saving application:", error);
@@ -758,7 +825,7 @@
                     errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Failed to submit application. Please try again. Error: ${error.message}`;
                     errorDiv.classList.add('show');
                 }
-            } finally {
+                // Re-enable button on error
                 if(submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Royal Application';
@@ -777,6 +844,7 @@
     checkBasicKnowledge();
     
     console.log("✅ Application form loaded successfully!");
+    console.log("🔗 Redirect URL set to:", REDIRECT_URL);
 </script>
 </body>
 </html>
