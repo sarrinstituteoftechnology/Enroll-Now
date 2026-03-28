@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>SARR Institute | Luxurious Application Portal</title>
+    <title>SARR Institute | Application Portal</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(145deg, #0A1428 0%, #0F1A2F 100%);
+            background: #F5F3F0;  /* Soft warm background - easy on eyes */
             min-height: 100vh;
             padding: 48px 24px;
             position: relative;
@@ -28,8 +28,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 40%, rgba(44, 95, 138, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(102, 126, 234, 0.12) 0%, transparent 60%);
+            background: radial-gradient(circle at 30% 40%, rgba(44, 90, 75, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(182, 123, 94, 0.06) 0%, transparent 60%);
             pointer-events: none;
             z-index: 0;
             animation: slowDrift 30s ease-in-out infinite;
@@ -37,7 +37,7 @@
 
         @keyframes slowDrift {
             0%, 100% { transform: translate(0%, 0%); }
-            50% { transform: translate(3%, 2%); }
+            50% { transform: translate(2%, 1.5%); }
         }
 
         .form-container {
@@ -50,47 +50,50 @@
         .form-header {
             text-align: center;
             margin-bottom: 40px;
-            animation: fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            animation: fadeInUp 0.7s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .form-header h1 {
-            font-size: 3rem;
+            font-size: 2.6rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #E8F0FF, #66FCF1, #C3073F);
+            background: linear-gradient(135deg, #2C5A4B, #B67B5E);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            letter-spacing: -0.5px;
-            text-shadow: 0 0 30px rgba(102, 252, 241, 0.3);
+            letter-spacing: -0.02em;
         }
 
         .form-header p {
-            color: rgba(200, 215, 245, 0.8);
+            color: #6F7C72;
             font-size: 1rem;
             margin-top: 12px;
-            letter-spacing: 0.3px;
         }
 
         .luxury-line {
-            width: 100px;
+            width: 80px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #66FCF1, #C3073F, transparent);
-            margin: 20px auto 0;
+            background: linear-gradient(90deg, transparent, #B67B5E, #2C5A4B, transparent);
+            margin: 18px auto 0;
             border-radius: 2px;
         }
 
         .form-card {
-            background: rgba(15, 25, 45, 0.65);
-            backdrop-filter: blur(18px);
-            border-radius: 48px;
-            border: 1px solid rgba(102, 252, 241, 0.25);
-            box-shadow: 0 30px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(102, 252, 241, 0.1) inset;
+            background: rgba(255, 253, 250, 0.92);
+            backdrop-filter: blur(12px);
+            border-radius: 40px;
+            border: 1px solid rgba(100, 120, 110, 0.25);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(100, 120, 110, 0.1) inset;
             overflow: hidden;
         }
 
         .form-section {
-            padding: 36px 44px;
-            border-bottom: 1px solid rgba(102, 252, 241, 0.12);
+            padding: 32px 40px;
+            border-bottom: 1px solid rgba(100, 120, 110, 0.12);
         }
 
         .form-section:last-child {
@@ -100,27 +103,23 @@
         .section-title {
             display: flex;
             align-items: center;
-            gap: 14px;
-            font-size: 1.4rem;
+            gap: 12px;
+            font-size: 1.3rem;
             font-weight: 600;
-            color: #66FCF1;
-            margin-bottom: 32px;
+            color: #2C5A4B;
+            margin-bottom: 28px;
             letter-spacing: -0.2px;
-            text-shadow: 0 0 8px rgba(102, 252, 241, 0.3);
         }
 
         .section-title i {
-            font-size: 1.6rem;
-            background: linear-gradient(135deg, #66FCF1, #C3073F);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            font-size: 1.4rem;
+            color: #B67B5E;
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 28px;
+            gap: 24px;
         }
 
         .form-group {
@@ -133,126 +132,121 @@
         }
 
         label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            color: #9BB4D4;
-            margin-bottom: 10px;
+            letter-spacing: 1px;
+            color: #8FAA9F;
+            margin-bottom: 8px;
         }
 
         .required {
-            color: #C3073F;
+            color: #B67B5E;
             margin-left: 4px;
         }
 
         input, select, textarea {
             width: 100%;
-            padding: 14px 20px;
+            padding: 12px 18px;
             font-family: 'Inter', sans-serif;
-            font-size: 0.95rem;
-            background: rgba(10, 20, 35, 0.6);
-            border: 1.5px solid rgba(102, 252, 241, 0.25);
+            font-size: 0.9rem;
+            background: #FFFFFF;
+            border: 1.5px solid #E2DFD9;
             border-radius: 24px;
-            color: #F0F4FF;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            color: #2C4A3F;
+            transition: all 0.25s ease;
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #66FCF1;
-            box-shadow: 0 0 20px rgba(102, 252, 241, 0.2), 0 0 0 2px rgba(102, 252, 241, 0.1);
-            background: rgba(10, 20, 35, 0.8);
-            transform: translateY(-2px);
+            border-color: #B67B5E;
+            box-shadow: 0 0 0 3px rgba(182, 123, 94, 0.15);
+            transform: translateY(-1px);
         }
 
         .radio-group, .checkbox-group {
             display: flex;
             flex-wrap: wrap;
             gap: 24px;
-            margin-top: 8px;
+            margin-top: 4px;
         }
 
         .radio-option, .checkbox-option {
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             cursor: pointer;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: #CCDEFF;
+            font-size: 0.85rem;
+            color: #4D6A5C;
             transition: all 0.2s;
         }
 
         .radio-option:hover, .checkbox-option:hover {
-            color: #66FCF1;
-            transform: translateX(3px);
+            color: #B67B5E;
         }
 
         .radio-option input, .checkbox-option input {
-            width: 18px;
-            height: 18px;
+            width: 16px;
+            height: 16px;
             margin: 0;
-            accent-color: #66FCF1;
+            accent-color: #2C5A4B;
         }
 
         .dynamic-interest-area {
-            background: linear-gradient(135deg, rgba(102, 252, 241, 0.05), rgba(195, 7, 63, 0.05));
-            border-radius: 32px;
-            padding: 28px;
-            margin-top: 20px;
-            border: 1px solid rgba(102, 252, 241, 0.25);
-            transition: all 0.5s ease;
+            background: rgba(44, 90, 75, 0.04);
+            border-radius: 28px;
+            padding: 24px;
+            margin-top: 16px;
+            border: 1px solid rgba(44, 90, 75, 0.15);
         }
 
         .interest-title {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 600;
-            color: #66FCF1;
-            margin-bottom: 20px;
+            color: #2C5A4B;
+            margin-bottom: 18px;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 12px;
         }
 
         .courses-premium-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 16px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 14px;
             max-height: 480px;
             overflow-y: auto;
-            padding: 8px 4px;
+            padding: 4px;
         }
 
         .course-option {
             display: flex;
             align-items: center;
-            gap: 16px;
-            padding: 16px 20px;
-            background: rgba(10, 20, 35, 0.5);
-            border: 1.5px solid rgba(102, 252, 241, 0.2);
+            gap: 14px;
+            padding: 14px 18px;
+            background: #FFFFFF;
+            border: 1.5px solid #E2DFD9;
             border-radius: 28px;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: all 0.25s ease;
             cursor: pointer;
         }
 
         .course-option:hover {
-            border-color: #66FCF1;
-            background: rgba(102, 252, 241, 0.08);
-            transform: translateX(6px) scale(1.01);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            border-color: #B67B5E;
+            background: rgba(182, 123, 94, 0.04);
+            transform: translateX(4px);
         }
 
         .course-option input[type="radio"] {
-            width: 22px;
-            height: 22px;
-            accent-color: #66FCF1;
+            width: 18px;
+            height: 18px;
+            accent-color: #2C5A4B;
         }
 
         .course-details {
@@ -261,77 +255,76 @@
 
         .course-title {
             font-weight: 700;
-            color: #E8F0FF;
-            font-size: 1rem;
+            color: #2C4A3F;
+            font-size: 0.95rem;
             margin-bottom: 6px;
         }
 
         .course-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
-            font-size: 0.7rem;
+            gap: 10px;
+            font-size: 0.65rem;
         }
 
         .course-cat {
-            background: rgba(102, 252, 241, 0.15);
-            padding: 3px 12px;
+            background: rgba(44, 90, 75, 0.12);
+            padding: 2px 10px;
             border-radius: 30px;
-            color: #66FCF1;
+            color: #2C5A4B;
         }
 
         .course-dur {
-            color: #9BB4D4;
+            color: #8FAA9F;
         }
 
         .recommendation-banner {
-            background: linear-gradient(135deg, rgba(195, 7, 63, 0.15), rgba(102, 252, 241, 0.1));
-            border-left: 5px solid #C3073F;
-            border-radius: 28px;
-            padding: 24px 28px;
-            margin-bottom: 28px;
-            backdrop-filter: blur(8px);
+            background: rgba(182, 123, 94, 0.08);
+            border-left: 4px solid #B67B5E;
+            border-radius: 24px;
+            padding: 20px 24px;
+            margin-bottom: 24px;
         }
 
         .recommend-btn {
-            background: linear-gradient(135deg, #C3073F, #9b2c4b);
+            background: #2C5A4B;
             border: none;
-            padding: 10px 24px;
+            padding: 8px 20px;
             border-radius: 40px;
             color: white;
-            font-weight: 600;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.2s;
             margin-top: 12px;
+            font-size: 0.8rem;
         }
 
         .recommend-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(195, 7, 63, 0.4);
+            background: #236851;
+            transform: translateY(-1px);
         }
 
         .btn-submit {
-            background: linear-gradient(135deg, #66FCF1, #2C5F8A);
+            background: linear-gradient(135deg, #2C5A4B, #3F7864);
             border: none;
-            padding: 18px 32px;
-            font-size: 1.1rem;
-            font-weight: 700;
+            padding: 16px 28px;
+            font-size: 1rem;
+            font-weight: 600;
             border-radius: 60px;
             width: 100%;
             cursor: pointer;
-            color: #0A1428;
-            transition: all 0.4s;
+            color: white;
+            transition: all 0.3s;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
-            letter-spacing: 1px;
+            gap: 10px;
         }
 
         .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 35px rgba(102, 252, 241, 0.3);
-            filter: brightness(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(44, 90, 75, 0.25);
+            background: linear-gradient(135deg, #236851, #2C5A4B);
         }
 
         .btn-submit:disabled {
@@ -341,14 +334,14 @@
         }
 
         .success-banner {
-            background: linear-gradient(135deg, rgba(102, 252, 241, 0.2), rgba(195, 7, 63, 0.15));
-            border-radius: 28px;
-            padding: 18px;
+            background: rgba(44, 90, 75, 0.12);
+            border-radius: 24px;
+            padding: 16px;
             text-align: center;
-            color: #66FCF1;
-            margin-top: 24px;
+            color: #2C5A4B;
+            margin-top: 20px;
             display: none;
-            border: 1px solid rgba(102, 252, 241, 0.4);
+            border: 1px solid rgba(44, 90, 75, 0.25);
         }
 
         .success-banner.show {
@@ -357,14 +350,14 @@
         }
 
         .error-banner {
-            background: linear-gradient(135deg, rgba(195, 7, 63, 0.2), rgba(195, 7, 63, 0.1));
-            border-radius: 28px;
-            padding: 18px;
+            background: rgba(182, 123, 94, 0.12);
+            border-radius: 24px;
+            padding: 16px;
             text-align: center;
-            color: #C3073F;
-            margin-top: 24px;
+            color: #B67B5E;
+            margin-top: 20px;
             display: none;
-            border: 1px solid rgba(195, 7, 63, 0.4);
+            border: 1px solid rgba(182, 123, 94, 0.3);
         }
 
         .error-banner.show {
@@ -372,15 +365,16 @@
         }
 
         .error-message {
-            color: #C3073F;
+            color: #B67B5E;
             margin-top: 12px;
             display: none;
+            font-size: 0.8rem;
         }
 
         .spinner {
             display: inline-block;
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
             border: 2px solid rgba(255,255,255,0.3);
             border-radius: 50%;
             border-top-color: white;
@@ -392,52 +386,56 @@
         }
 
         @keyframes fadeSlide {
-            from { opacity: 0; transform: translateY(-8px); }
+            from { opacity: 0; transform: translateY(-6px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Redirect Message */
         .redirect-message {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: rgba(102, 252, 241, 0.2);
-            backdrop-filter: blur(10px);
-            padding: 12px 24px;
+            bottom: 25px;
+            right: 25px;
+            background: rgba(44, 90, 75, 0.92);
+            backdrop-filter: blur(12px);
+            padding: 10px 22px;
             border-radius: 50px;
-            color: #66FCF1;
-            font-size: 0.85rem;
+            color: white;
+            font-size: 0.8rem;
             z-index: 1000;
             display: none;
             align-items: center;
             gap: 10px;
-            border: 1px solid rgba(102, 252, 241, 0.3);
+            border: 1px solid rgba(255,255,255,0.2);
             animation: slideInRight 0.3s ease;
         }
 
         @keyframes slideInRight {
-            from { transform: translateX(100px); opacity: 0; }
+            from { transform: translateX(80px); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
 
         @media (max-width: 780px) {
             body { padding: 24px 16px; }
             .form-section { padding: 24px 20px; }
-            .form-grid { grid-template-columns: 1fr; gap: 20px; }
+            .form-grid { grid-template-columns: 1fr; gap: 18px; }
             .form-group.full-width { grid-column: span 1; }
-            .redirect-message { bottom: 20px; right: 20px; padding: 8px 16px; font-size: 0.75rem; }
+            .form-header h1 { font-size: 1.8rem; }
+            .redirect-message { bottom: 20px; right: 20px; padding: 8px 18px; font-size: 0.7rem; }
         }
 
         .courses-premium-grid::-webkit-scrollbar {
-            width: 6px;
+            width: 5px;
         }
         .courses-premium-grid::-webkit-scrollbar-track {
-            background: rgba(102, 252, 241, 0.1);
+            background: #E8E4DD;
             border-radius: 10px;
         }
         .courses-premium-grid::-webkit-scrollbar-thumb {
-            background: #66FCF1;
+            background: #B67B5E;
             border-radius: 10px;
+        }
+        
+        input::placeholder, textarea::placeholder {
+            color: #C8D0C5;
         }
     </style>
 </head>
@@ -445,7 +443,7 @@
 <div class="form-container">
     <div class="form-header">
         <h1>SARR Institute of Technology</h1>
-        <p>Where ambition meets excellence — secure your future with our elite programs</p>
+        <p>Begin your journey — secure your place in our distinguished programs</p>
         <div class="luxury-line"></div>
     </div>
 
@@ -453,7 +451,7 @@
         <form id="premiumForm">
             <!-- Personal Info -->
             <div class="form-section">
-                <div class="section-title"><i class="fas fa-crown"></i><span>Distinguished Profile</span></div>
+                <div class="section-title"><i class="fas fa-user-circle"></i><span>Personal Profile</span></div>
                 <div class="form-grid">
                     <div class="form-group"><label>Full name <span class="required">*</span></label><input type="text" id="fullName" placeholder="Enter your full name" required></div>
                     <div class="form-group"><label>Guardian's name</label><input type="text" id="guardianName" placeholder="Father / Guardian"></div>
@@ -466,11 +464,11 @@
 
             <!-- Contact -->
             <div class="form-section">
-                <div class="section-title"><i class="fas fa-envelope-open-text"></i><span>Contact Resonance</span></div>
+                <div class="section-title"><i class="fas fa-address-card"></i><span>Contact Details</span></div>
                 <div class="form-grid">
                     <div class="form-group"><label>Mobile number <span class="required">*</span></label><input type="tel" id="mobile" placeholder="+92 300 1234567" required></div>
                     <div class="form-group"><label>Alternate phone</label><input type="tel" id="altPhone" placeholder="Optional"></div>
-                    <div class="form-group full-width"><label>Email address <span class="required">*</span></label><input type="email" id="email" placeholder="prestigious@domain.com" required></div>
+                    <div class="form-group full-width"><label>Email address <span class="required">*</span></label><input type="email" id="email" placeholder="name@example.com" required></div>
                     <div class="form-group full-width"><label>Address</label><input type="text" id="address" placeholder="Full address"></div>
                     <div class="form-group"><label>City</label><input type="text" id="city" placeholder="City"></div>
                     <div class="form-group"><label>Postal code</label><input type="text" id="postalCode" placeholder="Postal code"></div>
@@ -479,7 +477,7 @@
 
             <!-- Education -->
             <div class="form-section">
-                <div class="section-title"><i class="fas fa-graduation-cap"></i><span>Academic Pedigree</span></div>
+                <div class="section-title"><i class="fas fa-graduation-cap"></i><span>Academic Background</span></div>
                 <div class="form-grid">
                     <div class="form-group"><label>Matric / High school</label><input type="text" id="matric" placeholder="Institution & Grade"></div>
                     <div class="form-group"><label>Intermediate</label><input type="text" id="intermediate" placeholder="College & Percentage"></div>
@@ -489,27 +487,27 @@
 
             <!-- Computer Skills + Recommendation Trigger -->
             <div class="form-section">
-                <div class="section-title"><i class="fas fa-microchip"></i><span>Digital Aptitude</span></div>
+                <div class="section-title"><i class="fas fa-laptop-code"></i><span>Digital Aptitude</span></div>
                 <div class="form-grid">
                     <div class="form-group"><label>Basic computer knowledge <span class="required">*</span></label><div class="radio-group" id="basicCompGroup"><label class="radio-option"><input type="radio" name="basicComp" value="Yes" id="basicYes"> Yes</label><label class="radio-option"><input type="radio" name="basicComp" value="No" id="basicNo"> No</label></div></div>
                     <div class="form-group"><label>Internet browsing level</label><select id="internetLevel"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option></select></div>
                     <div class="form-group"><label>Microsoft Office</label><div class="radio-group"><label class="radio-option"><input type="radio" name="msOffice" value="Yes"> Yes</label><label class="radio-option"><input type="radio" name="msOffice" value="No"> No</label></div></div>
                 </div>
-                <div id="recommendationBanner" class="recommendation-banner" style="display: none;"><i class="fas fa-gem" style="color:#C3073F; margin-right:12px;"></i> <strong>Elite Recommendation:</strong> <span id="recommendationText"></span><br><button type="button" id="acceptRecBtn" class="recommend-btn">Select Foundation Program</button></div>
+                <div id="recommendationBanner" class="recommendation-banner" style="display: none;"><i class="fas fa-lightbulb" style="color:#B67B5E; margin-right:10px;"></i> <strong>Recommendation:</strong> <span id="recommendationText"></span><br><button type="button" id="acceptRecBtn" class="recommend-btn">Select Foundation Program</button></div>
             </div>
 
             <!-- Course Selection -->
             <div class="form-section">
-                <div class="section-title"><i class="fas fa-chalkboard-user"></i><span>Select Your Legacy Program</span></div>
+                <div class="section-title"><i class="fas fa-book-open"></i><span>Choose Your Program</span></div>
                 <div id="coursesContainer" class="courses-premium-grid"></div>
-                <div id="courseError" class="error-message">Please select a course to continue</div>
+                <div id="courseError" class="error-message">Please select a program to continue</div>
             </div>
 
             <!-- DYNAMIC AREA OF INTEREST -->
             <div class="form-section" id="dynamicInterestSection">
-                <div class="section-title"><i class="fas fa-chart-line"></i><span>Area of Specialization</span></div>
+                <div class="section-title"><i class="fas fa-chart-simple"></i><span>Area of Interest</span></div>
                 <div id="interestDynamicContent" class="dynamic-interest-area">
-                    <div class="interest-title"><i class="fas fa-sparkle"></i> Select a course above to see tailored specialization areas</div>
+                    <div class="interest-title"><i class="fas fa-compass"></i> Select a program to see specialization areas</div>
                     <div class="skills-grid" id="interestGrid"></div>
                 </div>
             </div>
@@ -519,15 +517,15 @@
                 <div class="section-title"><i class="fas fa-briefcase"></i><span>Professional Context</span></div>
                 <div class="form-group"><label>Previous experience?</label><div class="radio-group"><label class="radio-option"><input type="radio" name="hasExp" value="Yes"> Yes</label><label class="radio-option"><input type="radio" name="hasExp" value="No" checked> No</label></div></div>
                 <div id="expDetail" style="display:none; margin-top:16px;"><textarea rows="3" id="expDesc" placeholder="Describe your experience..." style="width:100%;"></textarea></div>
-                <div style="margin-top:24px;"><label>Purpose of enrollment</label><div class="checkbox-group" id="purposeGroup"><label class="checkbox-option"><input type="checkbox" name="purpose" value="Freelancing"> Freelancing</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Job Opportunities"> Job Opportunities</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Business Growth"> Business Growth</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Other"> Other: <input type="text" id="otherPurpose" style="width:180px; display:inline-block; margin-left:8px;"></label></div></div>
+                <div style="margin-top:24px;"><label>Purpose of enrollment</label><div class="checkbox-group" id="purposeGroup"><label class="checkbox-option"><input type="checkbox" name="purpose" value="Freelancing"> Freelancing</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Job Opportunities"> Job Opportunities</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Business Growth"> Business Growth</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Other"> Other: <input type="text" id="otherPurpose" style="width:160px; display:inline-block; margin-left:8px; padding:6px 12px;"></label></div></div>
             </div>
 
             <!-- Declaration -->
             <div class="form-section">
-                <div class="section-title"><i class="fas fa-feather-alt"></i><span>Oath of Authenticity</span></div>
-                <div style="background:rgba(102,252,241,0.05); border-radius:28px; padding:24px;">
+                <div class="section-title"><i class="fas fa-feather"></i><span>Declaration</span></div>
+                <div style="background:rgba(44, 90, 75, 0.03); border-radius:28px; padding:22px;">
                     <label class="checkbox-option"><input type="checkbox" id="declaration" required> I confirm that all information provided is accurate and complete.</label>
-                    <div style="margin-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:15px;">
+                    <div style="margin-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
                         <span><strong>Digital Signature:</strong> _________________</span>
                         <span><strong>Date:</strong> <span id="currentDateDisplay"></span></span>
                     </div>
@@ -535,7 +533,7 @@
             </div>
 
             <div class="form-section">
-                <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Submit Royal Application</button>
+                <button type="submit" class="btn-submit" id="submitBtn"><i class="fas fa-paper-plane"></i> Submit Application</button>
                 <div id="successMsg" class="success-banner"></div>
                 <div id="errorMsg" class="error-banner"></div>
             </div>
@@ -545,7 +543,7 @@
 
 <!-- Redirect Message -->
 <div id="redirectMessage" class="redirect-message">
-    <i class="fas fa-spinner fa-pulse"></i> Redirecting to greeting page...
+    <i class="fas fa-spinner fa-pulse"></i> Redirecting...
 </div>
 
 <!-- Firebase SDK and Main Script -->
@@ -554,7 +552,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
     
-    // ========== YOUR FIREBASE CONFIGURATION ==========
+    // ========== FIREBASE CONFIGURATION ==========
     const firebaseConfig = {
         apiKey: "AIzaSyCUE22yKvFNgmiRZ-4kn_Ev9oAuDZqfr0w",
         authDomain: "sarr-iot.firebaseapp.com",
@@ -566,23 +564,17 @@
     };
     
     // ========== CUSTOM REDIRECT URL ==========
-    // 👇 CHANGE THIS URL TO YOUR DESIRED REDIRECTION PAGE
-    const REDIRECT_URL = "https://sarrinstituteoftechnology.github.io/Application/"; // Replace with your custom link
-    // Examples:
-    // const REDIRECT_URL = "greeting.html";
-    // const REDIRECT_URL = "https://yourdomain.com/application-received";
-    // const REDIRECT_URL = "thank-you-page.html";
-    // ============================================
+    const REDIRECT_URL = "https://sarrinstituteoftechnology.github.io/Application/";
     
     // Initialize Firebase
     let db;
     try {
         const app = initializeApp(firebaseConfig);
         db = getFirestore(app);
-        console.log("✅ Firebase connected successfully!");
+        console.log("✅ Firebase connected");
     } catch (error) {
-        console.error("❌ Firebase initialization error:", error);
-        document.getElementById('errorMsg').innerHTML = "Firebase connection error. Please check configuration.";
+        console.error("❌ Firebase error:", error);
+        document.getElementById('errorMsg').innerHTML = "Connection issue. Please try again.";
         document.getElementById('errorMsg').classList.add('show');
     }
     
@@ -590,9 +582,7 @@
     const today = new Date();
     const dateStr = today.toLocaleDateString('en-PK', { year: 'numeric', month: '2-digit', day: '2-digit' });
     const dateElement = document.getElementById('currentDateDisplay');
-    if (dateElement) {
-        dateElement.innerText = dateStr;
-    }
+    if (dateElement) dateElement.innerText = dateStr;
     
     // Premium course catalog
     const courses = [
@@ -621,7 +611,7 @@
         courses.forEach((course, idx) => {
             const card = document.createElement('div');
             card.className = 'course-option';
-            if (isBasicNo && course.name === "Digital Freelance Starter Program") card.style.border = "2px solid #C3073F";
+            if (isBasicNo && course.name === "Digital Freelance Starter Program") card.style.border = "2px solid #B67B5E";
             card.innerHTML = `<input type="radio" name="selectedCourse" value="${course.name.replace(/"/g, '&quot;')}" id="course_${idx}"><div class="course-details"><div class="course-title">${course.name}</div><div class="course-meta"><span class="course-cat">${course.category}</span><span class="course-dur">${course.duration}</span></div></div>`;
             container.appendChild(card);
         });
@@ -645,15 +635,15 @@
         const interestDiv = document.getElementById('interestGrid');
         const titleDiv = document.querySelector('#interestDynamicContent .interest-title');
         if(selected && interestDiv && titleDiv) {
-            titleDiv.innerHTML = `<i class="fas fa-gem"></i> Tailored Specializations for ${selected.name}`;
+            titleDiv.innerHTML = `<i class="fas fa-star"></i> Specializations for ${selected.name}`;
             interestDiv.innerHTML = selected.interests.map(interest => `
-                <label class="checkbox-option" style="background:rgba(102,252,241,0.05); padding:12px 18px; border-radius:40px;">
+                <label class="checkbox-option" style="background:rgba(44,90,75,0.04); padding:10px 16px; border-radius:40px;">
                     <input type="checkbox" value="${interest}"> ${interest}
                 </label>
             `).join('');
         } else if(titleDiv) {
-            titleDiv.innerHTML = `<i class="fas fa-sparkle"></i> Select a course to reveal specialized areas`;
-            if(interestDiv) interestDiv.innerHTML = '<div style="padding:20px; text-align:center; opacity:0.7;">Your personalized curriculum path will appear here</div>';
+            titleDiv.innerHTML = `<i class="fas fa-compass"></i> Select a program to see specialization areas`;
+            if(interestDiv) interestDiv.innerHTML = '<div style="padding:20px; text-align:center; opacity:0.6;">Your personalized curriculum path will appear here</div>';
         }
     }
     
@@ -664,7 +654,7 @@
         const recText = document.getElementById('recommendationText');
         if(basicNoRadio && basicNoRadio.checked) {
             isBasicNo = true;
-            if(recText) recText.innerHTML = 'We recommend the Digital Freelance Starter Program to build foundational digital skills before advancing to high-end technical courses.';
+            if(recText) recText.innerHTML = 'We recommend the Digital Freelance Starter Program to build foundational digital skills.';
             if(banner) banner.style.display = 'block';
             renderCourses();
         } else if(basicYesRadio && basicYesRadio.checked) {
@@ -694,15 +684,12 @@
         if(expDetail) expDetail.style.display = this.value === 'Yes' ? 'block' : 'none'; 
     }));
     
-    // Show redirect message
     function showRedirectMessage() {
         const msgDiv = document.getElementById('redirectMessage');
-        if (msgDiv) {
-            msgDiv.style.display = 'flex';
-        }
+        if (msgDiv) msgDiv.style.display = 'flex';
     }
     
-    // Form Submission to Firebase with Redirect
+    // Form Submission
     const form = document.getElementById('premiumForm');
     if(form) {
         form.addEventListener('submit', async function(e) {
@@ -740,7 +727,6 @@
                 return; 
             }
             
-            // Collect all form data
             const applicationId = "SARR-" + Date.now() + "-" + Math.random().toString(36).substr(2, 6).toUpperCase();
             
             const formData = {
@@ -773,7 +759,6 @@
                 applicationId: applicationId
             };
             
-            // Store application data in localStorage for the greeting page
             localStorage.setItem('sarr_last_applicant', JSON.stringify({
                 name: name,
                 appId: applicationId,
@@ -782,7 +767,6 @@
                 submittedAt: new Date().toISOString()
             }));
             
-            // Disable button and show loading
             if(submitBtn) {
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = '<span class="spinner"></span> Submitting...';
@@ -791,44 +775,32 @@
             try {
                 if(!db) throw new Error("Firebase not initialized");
                 
-                const docRef = await addDoc(collection(db, "applications"), formData);
-                console.log("✅ Application saved with ID: ", docRef.id);
-                console.log("📝 Application Data:", formData);
-                console.log("🔄 Redirecting to:", REDIRECT_URL);
+                await addDoc(collection(db, "applications"), formData);
+                console.log("✅ Application saved");
                 
-                // Show redirect message
                 showRedirectMessage();
                 
-                // Show success message briefly before redirect
                 if(successDiv) {
-                    successDiv.innerHTML = `<i class="fas fa-check-circle"></i> Application submitted successfully!<br>Application ID: ${applicationId}<br>Redirecting you to the next page...`;
+                    successDiv.innerHTML = `<i class="fas fa-check-circle"></i> Application submitted!<br>ID: ${applicationId}<br>Redirecting...`;
                     successDiv.classList.add('show');
                 }
                 
-                // Wait 2 seconds to show success message, then redirect
                 setTimeout(() => {
-                    // Build redirect URL with query parameters
                     let redirectUrl = REDIRECT_URL;
-                    
-                    // Add query parameters if the URL is a local file or has query string support
-                    if (redirectUrl.includes('?') || redirectUrl.includes('.html') || redirectUrl.includes('.php')) {
-                        const separator = redirectUrl.includes('?') ? '&' : '?';
-                        redirectUrl = `${redirectUrl}${separator}name=${encodeURIComponent(name)}&appId=${applicationId}&email=${encodeURIComponent(email)}&course=${encodeURIComponent(selected.value)}`;
-                    }
-                    
+                    const separator = redirectUrl.includes('?') ? '&' : '?';
+                    redirectUrl = `${redirectUrl}${separator}name=${encodeURIComponent(name)}&appId=${applicationId}&email=${encodeURIComponent(email)}&course=${encodeURIComponent(selected.value)}`;
                     window.location.href = redirectUrl;
-                }, 2000);
+                }, 1800);
                 
             } catch (error) {
-                console.error("❌ Error saving application:", error);
+                console.error("Error:", error);
                 if(errorDiv) {
-                    errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Failed to submit application. Please try again. Error: ${error.message}`;
+                    errorDiv.innerHTML = `<i class="fas fa-exclamation-triangle"></i> Submission failed. Please try again.`;
                     errorDiv.classList.add('show');
                 }
-                // Re-enable button on error
                 if(submitBtn) {
                     submitBtn.disabled = false;
-                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Royal Application';
+                    submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Submit Application';
                 }
             }
         });
@@ -843,8 +815,7 @@
     renderCourses();
     checkBasicKnowledge();
     
-    console.log("✅ Application form loaded successfully!");
-    console.log("🔗 Redirect URL set to:", REDIRECT_URL);
+    console.log("✅ Application form ready");
 </script>
 </body>
 </html>
