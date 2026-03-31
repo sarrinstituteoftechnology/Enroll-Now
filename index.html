@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>SARR Institute | Application Portal</title>
+    <title>SARR Institute | Application Portal - Pakistan</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
@@ -15,7 +15,7 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #F5F3F0;  /* Soft warm background - easy on eyes */
+            background: #0A1922;
             min-height: 100vh;
             padding: 48px 24px;
             position: relative;
@@ -28,8 +28,8 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 30% 40%, rgba(44, 90, 75, 0.08) 0%, transparent 50%),
-                        radial-gradient(circle at 70% 60%, rgba(182, 123, 94, 0.06) 0%, transparent 60%);
+            background: radial-gradient(circle at 30% 40%, rgba(76, 175, 80, 0.08) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 60%, rgba(76, 175, 80, 0.05) 0%, transparent 60%);
             pointer-events: none;
             z-index: 0;
             animation: slowDrift 30s ease-in-out infinite;
@@ -41,7 +41,7 @@
         }
 
         .form-container {
-            max-width: 1200px;
+            max-width: 800px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
@@ -61,15 +61,18 @@
         .form-header h1 {
             font-size: 2.6rem;
             font-weight: 700;
-            background: linear-gradient(135deg, #2C5A4B, #B67B5E);
+            background: linear-gradient(135deg, #FFFFFF, #4CAF50);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
             letter-spacing: -0.02em;
         }
+        .form-header h1 span {
+            color: #4CAF50;
+        }
 
         .form-header p {
-            color: #6F7C72;
+            color: #CCD6F6;
             font-size: 1rem;
             margin-top: 12px;
         }
@@ -77,23 +80,22 @@
         .luxury-line {
             width: 80px;
             height: 2px;
-            background: linear-gradient(90deg, transparent, #B67B5E, #2C5A4B, transparent);
+            background: linear-gradient(90deg, transparent, #4CAF50, #4CAF50, transparent);
             margin: 18px auto 0;
             border-radius: 2px;
         }
 
         .form-card {
-            background: rgba(255, 253, 250, 0.92);
-            backdrop-filter: blur(12px);
-            border-radius: 40px;
-            border: 1px solid rgba(100, 120, 110, 0.25);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(100, 120, 110, 0.1) inset;
+            background: #0F212A;
+            border-radius: 24px;
+            border: 1px solid rgba(76, 175, 80, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
             overflow: hidden;
         }
 
         .form-section {
-            padding: 32px 40px;
-            border-bottom: 1px solid rgba(100, 120, 110, 0.12);
+            padding: 28px 32px;
+            border-bottom: 1px solid rgba(76, 175, 80, 0.15);
         }
 
         .form-section:last-child {
@@ -104,22 +106,22 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 600;
-            color: #2C5A4B;
-            margin-bottom: 28px;
+            color: #4CAF50;
+            margin-bottom: 24px;
             letter-spacing: -0.2px;
         }
 
         .section-title i {
-            font-size: 1.4rem;
-            color: #B67B5E;
+            font-size: 1.3rem;
+            color: #4CAF50;
         }
 
         .form-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
+            gap: 20px;
         }
 
         .form-group {
@@ -136,38 +138,124 @@
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: #8FAA9F;
+            color: #CCD6F6;
             margin-bottom: 8px;
         }
 
         .required {
-            color: #B67B5E;
+            color: #4CAF50;
             margin-left: 4px;
         }
 
         input, select, textarea {
             width: 100%;
-            padding: 12px 18px;
+            padding: 12px 16px;
             font-family: 'Inter', sans-serif;
             font-size: 0.9rem;
-            background: #FFFFFF;
-            border: 1.5px solid #E2DFD9;
-            border-radius: 24px;
-            color: #2C4A3F;
+            background: #0A1922;
+            border: 1.5px solid #2A3A44;
+            border-radius: 12px;
+            color: #FFFFFF;
             transition: all 0.25s ease;
         }
 
         input:focus, select:focus, textarea:focus {
             outline: none;
-            border-color: #B67B5E;
-            box-shadow: 0 0 0 3px rgba(182, 123, 94, 0.15);
+            border-color: #4CAF50;
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
             transform: translateY(-1px);
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: #5A6E7A;
+        }
+
+        select option {
+            background: #0A1922;
+            color: #FFFFFF;
+        }
+
+        /* Searchable Select Styles */
+        .searchable-select {
+            position: relative;
+            width: 100%;
+        }
+        .searchable-select select {
+            display: none;
+        }
+        .select-btn {
+            width: 100%;
+            padding: 12px 16px;
+            background: #0A1922;
+            border: 1.5px solid #2A3A44;
+            border-radius: 12px;
+            color: #FFFFFF;
+            font-size: 0.9rem;
+            text-align: left;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .select-btn:hover {
+            border-color: #4CAF50;
+        }
+        .select-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #0F212A;
+            border: 1px solid #2A3A44;
+            border-radius: 12px;
+            margin-top: 5px;
+            max-height: 280px;
+            overflow-y: auto;
+            z-index: 100;
+            display: none;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .select-dropdown.show {
+            display: block;
+        }
+        .search-input {
+            padding: 10px;
+            border-bottom: 1px solid #2A3A44;
+            position: sticky;
+            top: 0;
+            background: #0F212A;
+        }
+        .search-input input {
+            width: 100%;
+            padding: 8px 12px;
+            background: #0A1922;
+            border: 1px solid #2A3A44;
+            border-radius: 8px;
+            color: white;
+            font-size: 0.85rem;
+        }
+        .select-options {
+            max-height: 220px;
+            overflow-y: auto;
+        }
+        .select-option {
+            padding: 10px 15px;
+            cursor: pointer;
+            color: #FFFFFF;
+            transition: background 0.2s;
+        }
+        .select-option:hover {
+            background: rgba(76, 175, 80, 0.2);
+        }
+        .select-option.selected {
+            background: rgba(76, 175, 80, 0.3);
+            color: #4CAF50;
         }
 
         .radio-group, .checkbox-group {
             display: flex;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 20px;
             margin-top: 4px;
         }
 
@@ -177,34 +265,34 @@
             gap: 8px;
             cursor: pointer;
             font-size: 0.85rem;
-            color: #4D6A5C;
+            color: #CCD6F6;
             transition: all 0.2s;
         }
 
         .radio-option:hover, .checkbox-option:hover {
-            color: #B67B5E;
+            color: #4CAF50;
         }
 
         .radio-option input, .checkbox-option input {
             width: 16px;
             height: 16px;
             margin: 0;
-            accent-color: #2C5A4B;
+            accent-color: #4CAF50;
         }
 
         .dynamic-interest-area {
-            background: rgba(44, 90, 75, 0.04);
-            border-radius: 28px;
-            padding: 24px;
+            background: rgba(76, 175, 80, 0.05);
+            border-radius: 20px;
+            padding: 20px;
             margin-top: 16px;
-            border: 1px solid rgba(44, 90, 75, 0.15);
+            border: 1px solid rgba(76, 175, 80, 0.2);
         }
 
         .interest-title {
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 600;
-            color: #2C5A4B;
-            margin-bottom: 18px;
+            color: #4CAF50;
+            margin-bottom: 16px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -212,41 +300,53 @@
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
         }
 
         .courses-premium-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 14px;
-            max-height: 480px;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            max-height: 400px;
             overflow-y: auto;
             padding: 4px;
+        }
+
+        .courses-premium-grid::-webkit-scrollbar {
+            width: 5px;
+        }
+        .courses-premium-grid::-webkit-scrollbar-track {
+            background: #2A3A44;
+            border-radius: 10px;
+        }
+        .courses-premium-grid::-webkit-scrollbar-thumb {
+            background: #4CAF50;
+            border-radius: 10px;
         }
 
         .course-option {
             display: flex;
             align-items: center;
-            gap: 14px;
-            padding: 14px 18px;
-            background: #FFFFFF;
-            border: 1.5px solid #E2DFD9;
-            border-radius: 28px;
+            gap: 12px;
+            padding: 12px 16px;
+            background: #0A1922;
+            border: 1.5px solid #2A3A44;
+            border-radius: 14px;
             transition: all 0.25s ease;
             cursor: pointer;
         }
 
         .course-option:hover {
-            border-color: #B67B5E;
-            background: rgba(182, 123, 94, 0.04);
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.08);
             transform: translateX(4px);
         }
 
         .course-option input[type="radio"] {
             width: 18px;
             height: 18px;
-            accent-color: #2C5A4B;
+            accent-color: #4CAF50;
         }
 
         .course-details {
@@ -255,60 +355,60 @@
 
         .course-title {
             font-weight: 700;
-            color: #2C4A3F;
-            font-size: 0.95rem;
-            margin-bottom: 6px;
+            color: #FFFFFF;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
         }
 
         .course-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            font-size: 0.65rem;
+            gap: 8px;
+            font-size: 0.6rem;
         }
 
         .course-cat {
-            background: rgba(44, 90, 75, 0.12);
-            padding: 2px 10px;
+            background: rgba(76, 175, 80, 0.2);
+            padding: 2px 8px;
             border-radius: 30px;
-            color: #2C5A4B;
+            color: #4CAF50;
         }
 
         .course-dur {
-            color: #8FAA9F;
+            color: #8AAEBF;
         }
 
         .recommendation-banner {
-            background: rgba(182, 123, 94, 0.08);
-            border-left: 4px solid #B67B5E;
-            border-radius: 24px;
-            padding: 20px 24px;
-            margin-bottom: 24px;
+            background: rgba(76, 175, 80, 0.08);
+            border-left: 4px solid #4CAF50;
+            border-radius: 16px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
         }
 
         .recommend-btn {
-            background: #2C5A4B;
+            background: #4CAF50;
             border: none;
-            padding: 8px 20px;
+            padding: 6px 16px;
             border-radius: 40px;
             color: white;
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
-            margin-top: 12px;
-            font-size: 0.8rem;
+            margin-top: 10px;
+            font-size: 0.75rem;
         }
 
         .recommend-btn:hover {
-            background: #236851;
+            background: #45a049;
             transform: translateY(-1px);
         }
 
         .btn-submit {
-            background: linear-gradient(135deg, #2C5A4B, #3F7864);
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
             border: none;
-            padding: 16px 28px;
-            font-size: 1rem;
+            padding: 14px 24px;
+            font-size: 0.95rem;
             font-weight: 600;
             border-radius: 60px;
             width: 100%;
@@ -323,8 +423,8 @@
 
         .btn-submit:hover {
             transform: translateY(-2px);
-            box-shadow: 0 12px 25px rgba(44, 90, 75, 0.25);
-            background: linear-gradient(135deg, #236851, #2C5A4B);
+            box-shadow: 0 12px 25px rgba(76, 175, 80, 0.3);
+            background: linear-gradient(135deg, #45a049, #2c6e2f);
         }
 
         .btn-submit:disabled {
@@ -334,14 +434,14 @@
         }
 
         .success-banner {
-            background: rgba(44, 90, 75, 0.12);
-            border-radius: 24px;
-            padding: 16px;
+            background: rgba(76, 175, 80, 0.15);
+            border-radius: 16px;
+            padding: 14px;
             text-align: center;
-            color: #2C5A4B;
+            color: #4CAF50;
             margin-top: 20px;
             display: none;
-            border: 1px solid rgba(44, 90, 75, 0.25);
+            border: 1px solid rgba(76, 175, 80, 0.3);
         }
 
         .success-banner.show {
@@ -350,14 +450,14 @@
         }
 
         .error-banner {
-            background: rgba(182, 123, 94, 0.12);
-            border-radius: 24px;
-            padding: 16px;
+            background: rgba(220, 53, 69, 0.15);
+            border-radius: 16px;
+            padding: 14px;
             text-align: center;
-            color: #B67B5E;
+            color: #dc3545;
             margin-top: 20px;
             display: none;
-            border: 1px solid rgba(182, 123, 94, 0.3);
+            border: 1px solid rgba(220, 53, 69, 0.3);
         }
 
         .error-banner.show {
@@ -365,10 +465,10 @@
         }
 
         .error-message {
-            color: #B67B5E;
+            color: #dc3545;
             margin-top: 12px;
             display: none;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
         }
 
         .spinner {
@@ -394,7 +494,7 @@
             position: fixed;
             bottom: 25px;
             right: 25px;
-            background: rgba(44, 90, 75, 0.92);
+            background: rgba(76, 175, 80, 0.9);
             backdrop-filter: blur(12px);
             padding: 10px 22px;
             border-radius: 50px;
@@ -414,35 +514,20 @@
         }
 
         @media (max-width: 780px) {
-            body { padding: 24px 16px; }
-            .form-section { padding: 24px 20px; }
-            .form-grid { grid-template-columns: 1fr; gap: 18px; }
+            body { padding: 20px 16px; }
+            .form-section { padding: 20px; }
+            .form-grid { grid-template-columns: 1fr; gap: 16px; }
             .form-group.full-width { grid-column: span 1; }
-            .form-header h1 { font-size: 1.8rem; }
+            .form-header h1 { font-size: 1.6rem; }
             .redirect-message { bottom: 20px; right: 20px; padding: 8px 18px; font-size: 0.7rem; }
-        }
-
-        .courses-premium-grid::-webkit-scrollbar {
-            width: 5px;
-        }
-        .courses-premium-grid::-webkit-scrollbar-track {
-            background: #E8E4DD;
-            border-radius: 10px;
-        }
-        .courses-premium-grid::-webkit-scrollbar-thumb {
-            background: #B67B5E;
-            border-radius: 10px;
-        }
-        
-        input::placeholder, textarea::placeholder {
-            color: #C8D0C5;
+            .form-container { max-width: 100%; }
         }
     </style>
 </head>
 <body>
 <div class="form-container">
     <div class="form-header">
-        <h1>SARR Institute of Technology</h1>
+        <h1>SARR <span>Institute of Technology</span></h1>
         <p>Begin your journey — secure your place in our distinguished programs</p>
         <div class="luxury-line"></div>
     </div>
@@ -457,8 +542,8 @@
                     <div class="form-group"><label>Guardian's name</label><input type="text" id="guardianName" placeholder="Father / Guardian"></div>
                     <div class="form-group"><label>Date of birth <span class="required">*</span></label><input type="date" id="dob" required></div>
                     <div class="form-group"><label>Gender</label><div class="radio-group"><label class="radio-option"><input type="radio" name="gender" value="Male"> Male</label><label class="radio-option"><input type="radio" name="gender" value="Female"> Female</label><label class="radio-option"><input type="radio" name="gender" value="Other"> Other</label></div></div>
-                    <div class="form-group"><label>CNIC / National ID</label><input type="text" id="cnic" placeholder="e.g., 35201-1234567-8"></div>
-                    <div class="form-group"><label>Nationality</label><input type="text" id="nationality" value="Pakistani"></div>
+                    <div class="form-group"><label>CNIC / National ID</label><input type="text" id="cnic" placeholder="e.g., 35201-1234567-8" oninput="this.value = this.value.replace(/[^0-9-]/g, '')"></div>
+                    <div class="form-group full-width"><label>Nationality</label><input type="text" id="nationality" value="Pakistani" readonly style="background: #0F212A; cursor: not-allowed;"></div>
                 </div>
             </div>
 
@@ -466,11 +551,20 @@
             <div class="form-section">
                 <div class="section-title"><i class="fas fa-address-card"></i><span>Contact Details</span></div>
                 <div class="form-grid">
-                    <div class="form-group"><label>Mobile number <span class="required">*</span></label><input type="tel" id="mobile" placeholder="+92 300 1234567" required></div>
-                    <div class="form-group"><label>Alternate phone</label><input type="tel" id="altPhone" placeholder="Optional"></div>
+                    <div class="form-group"><label>Mobile number <span class="required">*</span></label><input type="tel" id="mobile" placeholder="+92 300 1234567" required oninput="this.value = this.value.replace(/[^0-9+]/g, '')"></div>
+                    <div class="form-group"><label>Alternate phone</label><input type="tel" id="altPhone" placeholder="Optional" oninput="this.value = this.value.replace(/[^0-9+]/g, '')"></div>
                     <div class="form-group full-width"><label>Email address <span class="required">*</span></label><input type="email" id="email" placeholder="name@example.com" required></div>
                     <div class="form-group full-width"><label>Address</label><input type="text" id="address" placeholder="Full address"></div>
-                    <div class="form-group"><label>City</label><input type="text" id="city" placeholder="City"></div>
+                    <div class="form-group" id="cityContainer"><label>City / District <span class="required">*</span></label>
+                        <div class="searchable-select" id="citySelect">
+                            <div class="select-btn" id="cityBtn">Select City</div>
+                            <div class="select-dropdown" id="cityDropdown">
+                                <div class="search-input"><input type="text" id="citySearch" placeholder="Search city..."></div>
+                                <div class="select-options" id="cityOptions"></div>
+                            </div>
+                            <input type="hidden" id="city" value="">
+                        </div>
+                    </div>
                     <div class="form-group"><label>Postal code</label><input type="text" id="postalCode" placeholder="Postal code"></div>
                 </div>
             </div>
@@ -493,7 +587,7 @@
                     <div class="form-group"><label>Internet browsing level</label><select id="internetLevel"><option>Beginner</option><option selected>Intermediate</option><option>Advanced</option></select></div>
                     <div class="form-group"><label>Microsoft Office</label><div class="radio-group"><label class="radio-option"><input type="radio" name="msOffice" value="Yes"> Yes</label><label class="radio-option"><input type="radio" name="msOffice" value="No"> No</label></div></div>
                 </div>
-                <div id="recommendationBanner" class="recommendation-banner" style="display: none;"><i class="fas fa-lightbulb" style="color:#B67B5E; margin-right:10px;"></i> <strong>Recommendation:</strong> <span id="recommendationText"></span><br><button type="button" id="acceptRecBtn" class="recommend-btn">Select Foundation Program</button></div>
+                <div id="recommendationBanner" class="recommendation-banner" style="display: none;"><i class="fas fa-lightbulb" style="color:#4CAF50; margin-right:10px;"></i> <strong>Recommendation:</strong> <span id="recommendationText"></span><br><button type="button" id="acceptRecBtn" class="recommend-btn">Select Foundation Program</button></div>
             </div>
 
             <!-- Course Selection -->
@@ -517,17 +611,23 @@
                 <div class="section-title"><i class="fas fa-briefcase"></i><span>Professional Context</span></div>
                 <div class="form-group"><label>Previous experience?</label><div class="radio-group"><label class="radio-option"><input type="radio" name="hasExp" value="Yes"> Yes</label><label class="radio-option"><input type="radio" name="hasExp" value="No" checked> No</label></div></div>
                 <div id="expDetail" style="display:none; margin-top:16px;"><textarea rows="3" id="expDesc" placeholder="Describe your experience..." style="width:100%;"></textarea></div>
-                <div style="margin-top:24px;"><label>Purpose of enrollment</label><div class="checkbox-group" id="purposeGroup"><label class="checkbox-option"><input type="checkbox" name="purpose" value="Freelancing"> Freelancing</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Job Opportunities"> Job Opportunities</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Business Growth"> Business Growth</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Other"> Other: <input type="text" id="otherPurpose" style="width:160px; display:inline-block; margin-left:8px; padding:6px 12px;"></label></div></div>
+                <div style="margin-top:24px;"><label>Purpose of enrollment</label><div class="checkbox-group" id="purposeGroup"><label class="checkbox-option"><input type="checkbox" name="purpose" value="Freelancing"> Freelancing</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Job Opportunities"> Job Opportunities</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Business Growth"> Business Growth</label><label class="checkbox-option"><input type="checkbox" name="purpose" value="Other"> Other: <input type="text" id="otherPurpose" style="width:140px; display:inline-block; margin-left:8px; padding:6px 12px;"></label></div></div>
             </div>
 
-            <!-- Declaration -->
+            <!-- Declaration with Digital Signature -->
             <div class="form-section">
-                <div class="section-title"><i class="fas fa-feather"></i><span>Declaration</span></div>
-                <div style="background:rgba(44, 90, 75, 0.03); border-radius:28px; padding:22px;">
+                <div class="section-title"><i class="fas fa-feather"></i><span>Declaration & Digital Signature</span></div>
+                <div style="background:rgba(76, 175, 80, 0.05); border-radius:20px; padding:20px;">
                     <label class="checkbox-option"><input type="checkbox" id="declaration" required> I confirm that all information provided is accurate and complete.</label>
-                    <div style="margin-top:20px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;">
-                        <span><strong>Digital Signature:</strong> _________________</span>
-                        <span><strong>Date:</strong> <span id="currentDateDisplay"></span></span>
+                    <div style="margin-top:18px; display:flex; flex-wrap:wrap; gap:16px; align-items:center;">
+                        <div style="flex:1; min-width:200px;">
+                            <label>Digital Signature <span class="required">*</span></label>
+                            <input type="text" id="digitalSignature" placeholder="Type your full name as signature" required style="font-family: 'Courier New', monospace; font-size: 0.95rem;">
+                        </div>
+                        <div style="flex:1; min-width:180px;">
+                            <label>Date</label>
+                            <span id="currentDateDisplay" style="display:inline-block; padding:12px 16px; background:#0A1922; border:1.5px solid #2A3A44; border-radius:12px; width:100%; color:#FFFFFF;">Loading...</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -546,13 +646,10 @@
     <i class="fas fa-spinner fa-pulse"></i> Redirecting...
 </div>
 
-<!-- Firebase SDK and Main Script -->
 <script type="module">
-    // Import Firebase modules
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.0.2/firebase-firestore.js";
     
-    // ========== FIREBASE CONFIGURATION ==========
     const firebaseConfig = {
         apiKey: "AIzaSyCUE22yKvFNgmiRZ-4kn_Ev9oAuDZqfr0w",
         authDomain: "sarr-iot.firebaseapp.com",
@@ -563,10 +660,8 @@
         measurementId: "G-THDZBFCR9W"
     };
     
-    // ========== CUSTOM REDIRECT URL ==========
     const REDIRECT_URL = "https://sarrinstituteoftechnology.github.io/Application/";
     
-    // Initialize Firebase
     let db;
     try {
         const app = initializeApp(firebaseConfig);
@@ -584,7 +679,98 @@
     const dateElement = document.getElementById('currentDateDisplay');
     if (dateElement) dateElement.innerText = dateStr;
     
-    // Premium course catalog
+    // ========== COMPLETE PAKISTAN CITIES (All Provinces + AJK + Gilgit Baltistan) ==========
+    const pakistanCities = [
+        // Punjab - Major Cities
+        "Lahore", "Rawalpindi", "Faisalabad", "Multan", "Gujranwala", "Sialkot", "Bahawalpur", "Sargodha", "Sheikhupura", "Jhang", 
+        "Rahim Yar Khan", "Kasur", "Okara", "Wah Cantt", "Dera Ghazi Khan", "Mianwali", "Chiniot", "Sahiwal", "Hafizabad", 
+        "Mandi Bahauddin", "Nankana Sahib", "Narowal", "Pakpattan", "Toba Tek Singh", "Vehari", "Layyah", "Muzaffargarh", 
+        "Rajanpur", "Attock", "Chakwal", "Jhelum", "Khushab", "Talagang", "Bhakkar", "Khanewal", "Lodhran", "Bahawalnagar", 
+        "Hasilpur", "Arifwala", "Burewala", "Chichawatni", "Gojra", "Kamalia", "Mian Channu", "Pattoki", "Renala Khurd", 
+        "Shorkot", "Jaranwala", "Samundri", "Kamoke", "Daska", "Pasrur", "Wazirabad", "Gujrat", "Kharian", "Phalia", "Malakwal", 
+        "Bhalwal", "Bhera", "Sillanwali", "Shahpur", "Kot Momin", "Pind Dadan Khan", "Sarai Alamgir", "Dina", "Gujar Khan", 
+        "Taxila", "Hasan Abdal", "Kamra", "Haripur", "Abbottabad", "Mansehra",
+        
+        // Sindh
+        "Karachi", "Hyderabad", "Sukkur", "Larkana", "Nawabshah", "Mirpur Khas", "Jacobabad", "Shikarpur", "Dadu", "Tando Allahyar", 
+        "Tando Muhammad Khan", "Badin", "Thatta", "Ghotki", "Kashmore", "Kandhkot", "Khairpur", "Naushahro Feroze", "Sanghar", 
+        "Umerkot", "Matiari", "Jamshoro", "Qambar Shahdadkot", "Ratodero", "Mehar", "Moro", "Kotri", "Sehwan", "Johi", "Pano Aqil", 
+        "Rohri", "Gambat", "Ranipur", "Sakrand", "Daur", "Bhiria", "Shahdadpur", "Tando Adam", "Mithi", "Islamkot", "Chhor", 
+        "Sujawal", "Mirpur Bathoro", "Jati", "Keti Bandar",
+        
+        // Khyber Pakhtunkhwa
+        "Peshawar", "Mardan", "Abbottabad", "Mingora", "Mansehra", "Kohat", "Bannu", "Dera Ismail Khan", "Charsadda", "Nowshera", 
+        "Swabi", "Haripur", "Batagram", "Buner", "Malakand", "Lower Dir", "Upper Dir", "Chitral", "Hangu", "Karak", "Lakki Marwat", 
+        "Tank", "Shangla", "Kohistan", "Battagram", "Oghi", "Havelian", "Khalabat", "Risalpur", "Takht Bhai", "Katlang", "Rustam", 
+        "Dargai", "Batkhela", "Timergara", "Wari", "Chakdara", "Kalam", "Madyan", "Bahrain", "Kabal", "Barikot", "Matta", 
+        "Khwazakhela", "Charbagh", "Alpuri", "Beshgram", "Thall", "Harnai", "Ziarat", "Loralai", "Zhob",
+        
+        // Balochistan
+        "Quetta", "Gwadar", "Turbat", "Khuzdar", "Chaman", "Sibi", "Nushki", "Mastung", "Kalat", "Kharan", "Panjgur", "Awaran", 
+        "Lasbela", "Hub", "Jaffarabad", "Nasirabad", "Jhal Magsi", "Kachhi", "Bolan", "Dera Bugti", "Kohlu", "Barkhan", "Musakhel", 
+        "Qila Abdullah", "Pishin", "Killa Saifullah", "Sherani", "Chagai", "Washuk", "Nok Kundi", "Dalbandin", "Taftan", "Wana", 
+        "Razmak",
+        
+        // Azad Jammu & Kashmir (AJK)
+        "Muzaffarabad", "Mirpur", "Kotli", "Bhimber", "Rawalakot", "Bagh", "Haveli", "Poonch", "Sudhanoti", "Nakyal", "Dadyal", 
+        "Kharian", "Jhelum Valley", "Neelum Valley", "Leepa", "Hattian Bala", "Chakothi", "Garhi Dopatta", "Abbaspur", "Tatta Pani", 
+        "Mangla", "New Mirpur City", "Islamgarh", "Sehnsa", "Thorar", "Banjosa", "Toli Pir", "Arang Kel", "Kel", "Sharda", "Keran", 
+        "Dawarian", "Chitta Katha", "Hajira", "Pallandri", "Tatrinote", "Chikkar", "Khuiratta", "Charhoi", "Samahni", "Kalak", 
+        "Barnala", "Jandala", "Dungi", "Mandi", "Nar", "Dhamial", "Khurshidabad", "Mohri", "Sahalia", "Kakra", "Samber",
+        
+        // Gilgit-Baltistan (GB)
+        "Gilgit", "Skardu", "Hunza", "Nagar", "Ghizer", "Ghanche", "Astore", "Diamer", "Shigar", "Kharmang", "Roundu", "Chilas", 
+        "Danyore", "Juglot", "Karimabad", "Aliabad", "Gulmit", "Passu", "Sost", "Shimshal", "Chapursan", "Ishkoman", "Yasin", 
+        "Gupis", "Punial", "Sher Qilla", "Khaplu", "Machulu", "Thalay", "Haldi", "Parkuta", "Tolti", "Gamba", "Kachura", "Satpara", 
+        "Deosai", "Rama", "Phander", "Hussainabad", "Oshikhandas", "Nomal", "Fairy Meadows", "Naltar", "Babusar", "Gakuch", 
+        "Dainyor", "Kargah", "Bubur", "Chalt", "Hassanabad", "Murtazabad", "Nagar Khas", "Minapin", "Hoper", "Hispar", "Braldu", 
+        "Askole", "Jutial", "Konodas", "Sultanabad", "Fizagut", "Kashrote", "Danyor"
+    ].sort();
+    
+    // Initialize searchable select for cities
+    function initSearchableSelect(containerId, btnId, dropdownId, searchId, optionsId, hiddenId, optionsArray) {
+        const container = document.getElementById(containerId);
+        const btn = document.getElementById(btnId);
+        const dropdown = document.getElementById(dropdownId);
+        const searchInput = document.getElementById(searchId);
+        const optionsDiv = document.getElementById(optionsId);
+        const hiddenInput = document.getElementById(hiddenId);
+        
+        function renderOptions(filter = "") {
+            const filtered = optionsArray.filter(opt => opt.toLowerCase().includes(filter.toLowerCase()));
+            optionsDiv.innerHTML = filtered.map(opt => `<div class="select-option" data-value="${opt}">${opt}</div>`).join("");
+            document.querySelectorAll(`#${optionsId} .select-option`).forEach(opt => {
+                opt.addEventListener("click", () => {
+                    btn.innerHTML = opt.getAttribute("data-value");
+                    hiddenInput.value = opt.getAttribute("data-value");
+                    dropdown.classList.remove("show");
+                });
+            });
+        }
+        
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            dropdown.classList.toggle("show");
+            if (dropdown.classList.contains("show")) {
+                renderOptions("");
+                searchInput.value = "";
+                searchInput.focus();
+            }
+        });
+        
+        searchInput.addEventListener("input", (e) => renderOptions(e.target.value));
+        
+        document.addEventListener("click", (e) => {
+            if (!container.contains(e.target)) dropdown.classList.remove("show");
+        });
+        
+        renderOptions("");
+    }
+    
+    // Initialize city select with all Pakistan cities
+    initSearchableSelect("cityContainer", "cityBtn", "cityDropdown", "citySearch", "cityOptions", "city", pakistanCities);
+    
+    // Course catalog
     const courses = [
         { name: "Digital Freelance Starter Program", duration: "3 months", category: "Foundation", interests: ["Computer Basics", "Freelance Platforms", "Profile Building", "Client Communication", "Time Management"] },
         { name: "Web Development (Full Stack)", duration: "6 months", category: "Development", interests: ["Frontend Frameworks", "Backend APIs", "Database Design", "DevOps", "Cloud Deployment"] },
@@ -611,7 +797,7 @@
         courses.forEach((course, idx) => {
             const card = document.createElement('div');
             card.className = 'course-option';
-            if (isBasicNo && course.name === "Digital Freelance Starter Program") card.style.border = "2px solid #B67B5E";
+            if (isBasicNo && course.name === "Digital Freelance Starter Program") card.style.border = "2px solid #4CAF50";
             card.innerHTML = `<input type="radio" name="selectedCourse" value="${course.name.replace(/"/g, '&quot;')}" id="course_${idx}"><div class="course-details"><div class="course-title">${course.name}</div><div class="course-meta"><span class="course-cat">${course.category}</span><span class="course-dur">${course.duration}</span></div></div>`;
             container.appendChild(card);
         });
@@ -637,13 +823,13 @@
         if(selected && interestDiv && titleDiv) {
             titleDiv.innerHTML = `<i class="fas fa-star"></i> Specializations for ${selected.name}`;
             interestDiv.innerHTML = selected.interests.map(interest => `
-                <label class="checkbox-option" style="background:rgba(44,90,75,0.04); padding:10px 16px; border-radius:40px;">
+                <label class="checkbox-option" style="background:rgba(76,175,80,0.08); padding:8px 14px; border-radius:40px;">
                     <input type="checkbox" value="${interest}"> ${interest}
                 </label>
             `).join('');
         } else if(titleDiv) {
             titleDiv.innerHTML = `<i class="fas fa-compass"></i> Select a program to see specialization areas`;
-            if(interestDiv) interestDiv.innerHTML = '<div style="padding:20px; text-align:center; opacity:0.6;">Your personalized curriculum path will appear here</div>';
+            if(interestDiv) interestDiv.innerHTML = '<div style="padding:16px; text-align:center; opacity:0.6;">Your personalized curriculum path will appear here</div>';
         }
     }
     
@@ -689,7 +875,6 @@
         if (msgDiv) msgDiv.style.display = 'flex';
     }
     
-    // Form Submission
     const form = document.getElementById('premiumForm');
     if(form) {
         form.addEventListener('submit', async function(e) {
@@ -702,7 +887,6 @@
             if(successDiv) successDiv.classList.remove('show');
             if(errorDiv) errorDiv.classList.remove('show');
             
-            // Validate course selection
             const selected = document.querySelector('input[name="selectedCourse"]:checked');
             const courseError = document.getElementById('courseError');
             if(!selected) { 
@@ -711,19 +895,16 @@
             }
             if(courseError) courseError.style.display = 'none';
             
-            // Validate required fields
             const name = document.getElementById('fullName')?.value.trim();
             const dob = document.getElementById('dob')?.value;
             const mobile = document.getElementById('mobile')?.value.trim();
             const email = document.getElementById('email')?.value.trim();
             const declaration = document.getElementById('declaration')?.checked;
+            const digitalSignature = document.getElementById('digitalSignature')?.value.trim();
+            const city = document.getElementById('city')?.value;
             
-            if(!name || !dob || !mobile || !email) { 
-                alert('Please complete all required fields.'); 
-                return; 
-            }
-            if(!declaration) { 
-                alert('Please accept the declaration.'); 
+            if(!name || !dob || !mobile || !email || !declaration || !digitalSignature || !city) { 
+                alert('Please complete all required fields (Name, DOB, Mobile, Email, Declaration, Digital Signature, and City).'); 
                 return; 
             }
             
@@ -735,12 +916,12 @@
                 dateOfBirth: dob,
                 gender: document.querySelector('input[name="gender"]:checked')?.value || '',
                 cnic: document.getElementById('cnic')?.value || '',
-                nationality: document.getElementById('nationality')?.value || '',
+                nationality: "Pakistani",
                 mobileNumber: mobile,
                 alternatePhone: document.getElementById('altPhone')?.value || '',
                 email: email,
                 address: document.getElementById('address')?.value || '',
-                city: document.getElementById('city')?.value || '',
+                city: city,
                 postalCode: document.getElementById('postalCode')?.value || '',
                 matric: document.getElementById('matric')?.value || '',
                 intermediate: document.getElementById('intermediate')?.value || '',
@@ -754,6 +935,7 @@
                 experienceDescription: document.getElementById('expDesc')?.value || '',
                 purpose: Array.from(document.querySelectorAll('input[name="purpose"]:checked')).map(i => i.value),
                 otherPurpose: document.getElementById('otherPurpose')?.value || '',
+                digitalSignature: digitalSignature,
                 submittedAt: serverTimestamp(),
                 status: "pending",
                 applicationId: applicationId
@@ -806,7 +988,6 @@
         });
     }
     
-    // Initialize
     const basicNo = document.getElementById('basicNo');
     const basicYes = document.getElementById('basicYes');
     if(basicNo) basicNo.addEventListener('change', checkBasicKnowledge);
@@ -815,7 +996,7 @@
     renderCourses();
     checkBasicKnowledge();
     
-    console.log("✅ Application form ready");
+    console.log("✅ Application form ready with complete Pakistan cities including AJK and Gilgit Baltistan");
 </script>
 </body>
 </html>
